@@ -679,6 +679,12 @@ a {
   user-select: none;
 }
 
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero__filmwatermark {
+    top: 28%;
+  }
+}
+
 /* ============================================
    MANIFESTO SECTION
    ============================================ */
