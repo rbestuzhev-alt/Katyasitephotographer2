@@ -15,13 +15,13 @@ html, body {
 
 /* По умолчанию тач-элементы скрыты */
 .touch-only {
-  display: none;
+  display: none !important;
 }
 
 /* Сенсорные экраны */
 @media (hover: none) and (pointer: coarse) {
   .touch-only {
-    display: block;
+    display: inline-block !important;
   }
   .mouse-only {
     display: none !important;
