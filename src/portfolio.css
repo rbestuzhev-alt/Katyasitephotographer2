@@ -1559,7 +1559,7 @@ a {
 /* === ПЛАВНОЕ ПОЯВЛЕНИЕ ТЕЛЕФОНА (ЧИСТЫЙ FADE-IN) === */
 .insta-shot {
   opacity: 0;
-  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 3.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .insta-shot.insta-visible {
   opacity: 1;
