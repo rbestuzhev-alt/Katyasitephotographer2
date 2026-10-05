@@ -664,6 +664,21 @@ a {
   font-weight: 500;
 }
 
+.hero__filmwatermark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(18px, 4.5vw, 34px);
+  letter-spacing: 0.18em;
+  color: rgba(239, 235, 228, 0.16);
+  text-align: right;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ============================================
    MANIFESTO SECTION
    ============================================ */
