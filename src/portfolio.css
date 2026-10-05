@@ -575,7 +575,6 @@ a {
   text-shadow: 0 4px 30px rgba(0,0,0,0.3);
   white-space: nowrap;
   padding-inline: 4vw;
-  padding-right: 15%;
 }
 
 @media (min-width: 1281px) {
@@ -673,7 +672,9 @@ a {
   letter-spacing: 0.2em;
   color: var(--red);
   position: absolute;
-  margin-left: 0.3em;
+  right: -7em;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 
