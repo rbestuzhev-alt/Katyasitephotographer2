@@ -723,7 +723,7 @@ a {
   aspect-ratio: 3/4;
   object-fit: cover;
   z-index: 2;
-  box-shadow: 0 24px 90px rgba(0,0,0,0.32), 0 8px 30px rgba(0,0,0,0.22);
+  box-shadow: 0 30px 100px rgba(0,0,0,0.22), 0 10px 36px rgba(0,0,0,0.14);
   filter: grayscale(100%);
   transform: translateZ(0);
   will-change: transform;
