@@ -473,7 +473,7 @@ a {
 @media (max-width: 1024px) {
   .hero {
     height: auto;
-    min-height: 92.4vh;
+    min-height: 110vh;
     padding-bottom: 0;
   }
 }
@@ -589,6 +589,13 @@ a {
   .hero__name {
     animation: none;
     transform: translateY(-35%);
+  }
+}
+
+/* Самые узкие экраны: имя целиком помещается */
+@media (max-width: 360px) {
+  .hero__name {
+    font-size: 12vw;
   }
 }
 
