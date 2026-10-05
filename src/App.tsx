@@ -299,7 +299,7 @@ export default function App() {
             <span className="line-inner">ПОДСТАВКИНА</span>
           </span>
           <span className="line" style={{ '--i': 1 } as React.CSSProperties}>
-            <span className="line-inner">ЕКАТЕРИНА<span className="hero__frame">02A</span></span>
+            <span className="line-inner">ЕКАТЕРИНА<span className="hero__frame touch-only">02A</span></span>
           </span>
         </h1>
 
