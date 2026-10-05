@@ -681,7 +681,7 @@ a {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .hero__filmwatermark {
-    top: 28%;
+    top: 25%;
   }
 }
 
