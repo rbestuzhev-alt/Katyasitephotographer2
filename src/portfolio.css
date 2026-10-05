@@ -1591,3 +1591,10 @@ a {
     font-size: 10vw !important;
   }
 }
+
+/* Тач-устройства: отключаем анимацию зерна, оставляем статичную текстуру */
+@media (hover: none) and (pointer: coarse) {
+  body::after {
+    animation: none;
+  }
+}
