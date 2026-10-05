@@ -1574,3 +1574,10 @@ a {
     bottom: calc(90px + 4vh);
   }
 }
+
+/* Экраны 360px и уже: заголовок не выходит за края */
+@media (max-width: 360px) {
+  .hero__name {
+    font-size: 10vw !important;
+  }
+}
