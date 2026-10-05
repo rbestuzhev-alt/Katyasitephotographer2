@@ -473,7 +473,7 @@ a {
 @media (max-width: 1024px) {
   .hero {
     height: auto;
-    min-height: 95vh;
+    min-height: 101vh;
     padding-bottom: 0;
   }
 }
