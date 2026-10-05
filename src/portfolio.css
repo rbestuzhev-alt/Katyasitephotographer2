@@ -138,7 +138,7 @@ body.loaded::after {
    5. ЖИВОЕ ЗЕРНО
    ============================================ */
 body::after {
-  animation: grain 0.9s steps(2) infinite;
+  animation: grain 1.8s linear infinite;
 }
 
 @keyframes grain {
