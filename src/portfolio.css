@@ -1560,6 +1560,9 @@ a {
 .insta-shot {
   opacity: 0;
   transition: opacity 3.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .insta-shot.insta-visible {
   opacity: 1;
