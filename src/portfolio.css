@@ -1,0 +1,1559 @@
+/* ============================================
+   ЕКАТЕРИНА ПОДСТАВКИНА — PORTFOLIO
+   Editorial / Fashion Magazine Aesthetic
+   Фотолаборатория: чёрный + молочный + киноварь
+   ============================================ */
+
+/* Глобальное обрезание горизонтального выхода */
+html, body {
+  overflow-x: hidden;
+}
+
+/* ============================================
+   РАЗДЕЛЕНИЕ НА ТАЧ И МЫШЬ
+   ============================================ */
+
+/* По умолчанию тач-элементы скрыты */
+.touch-only {
+  display: none;
+}
+
+/* Сенсорные экраны */
+@media (hover: none) and (pointer: coarse) {
+  .touch-only {
+    display: block;
+  }
+  .mouse-only {
+    display: none !important;
+  }
+}
+
+/* Мышь / трекпад */
+@media (hover: hover) and (pointer: fine) {
+  .touch-only {
+    display: none !important;
+  }
+  .mouse-only {
+    display: block;
+  }
+}
+
+/* Мгновенный телепорт к якорям (без плавной анимации) */
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Центрирование кнопки при скролле к якорю */
+#scroll-to-insta-btn {
+  scroll-margin-top: calc(50vh - 25px);
+}
+
+/* ============================================
+   1. ПРЕЛОАДЕР "ПРОЯВКА"
+   ============================================ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.preloader--hidden {
+  transform: translateY(-100%);
+}
+
+.preloader__text {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--milk);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: preloaderFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes preloaderFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Управление тяжелыми анимациями */
+body:not(.loaded) .hero__bg img,
+body:not(.loaded) body::after {
+  animation-play-state: paused !important;
+}
+
+body.loaded .hero__bg img {
+  animation-play-state: running;
+}
+
+body.loaded::after {
+  animation-play-state: running;
+}
+
+/* ============================================
+   2. LINE-MASK REVEAL ЗАГОЛОВКОВ
+   ============================================ */
+.line-mask .line {
+  display: block;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.line-mask .line + .line {
+  margin-top: -0.15em;
+}
+
+.line-mask .line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 100ms);
+}
+
+.line-mask.in-view .line-inner {
+  transform: translateY(0);
+}
+
+/* ============================================
+   3. ПРОЯВКА КАДРОВ В ПОРТФОЛИО
+   ============================================ */
+.portfolio__card-img {
+  filter: blur(14px) grayscale(1) contrast(0.75) brightness(1.1);
+  transition: filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio__card-img.developed {
+  filter: none;
+}
+
+/* ============================================
+   5. ЖИВОЕ ЗЕРНО
+   ============================================ */
+body::after {
+  animation: grain 0.9s steps(2) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 2%); }
+  30% { transform: translate(-3%, 4%); }
+  40% { transform: translate(4%, -2%); }
+  50% { transform: translate(-2%, 3%); }
+  60% { transform: translate(3%, -3%); }
+  70% { transform: translate(-4%, 2%); }
+  80% { transform: translate(2%, -4%); }
+  90% { transform: translate(-3%, 3%); }
+}
+
+/* ============================================
+   PREFERS-REDUCED-MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none !important;
+  }
+
+  .line-mask .line-inner {
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+
+  .portfolio__card-img {
+    filter: none !important;
+    transition: none !important;
+  }
+
+  body::after {
+    animation: none !important;
+  }
+}
+
+/* ---------- CSS VARIABLES ---------- */
+:root {
+  --black: #0B0A08;
+  --milk: #EFEBE4;
+  --red: #C0291A;
+  --smoke: #8F8B85;
+  --line-on-black: rgba(239,235,228,.15);
+  --line-on-milk: rgba(11,10,8,.12);
+}
+
+/* ---------- RESET & BASE ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--black);
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+/* Плёночное зерно */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- SELECTION ---------- */
+::selection {
+  background: var(--red);
+  color: var(--milk);
+}
+
+/* ---------- FOCUS VISIBLE ---------- */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ---------- TYPOGRAPHY HELPERS ---------- */
+.font-serif {
+  font-family: 'Italiana', serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-sans {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.uppercase-nav {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+}
+
+/* ---------- MIXED HEADLINE ---------- */
+.mixed-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.mixed-headline em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0;
+}
+
+/* ---------- ARROW SVG ---------- */
+.arrow-icon {
+  display: inline-block;
+  width: 40px;
+  height: 12px;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+  vertical-align: middle;
+}
+
+.arrow-link:hover .arrow-icon,
+.btn:hover .arrow-icon {
+  transform: translateX(7px);
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--black);
+  color: var(--milk);
+  padding: 16px 32px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--red);
+  color: var(--milk);
+}
+
+/* Плавный переход для кнопок "КАК Я РАБОТАЮ" и "ЗАПИСАТЬСЯ НА СЪЁМКУ" */
+.btn-how,
+.btn-signup {
+  transition:
+    background 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    letter-spacing 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Тач-устройства: кнопки плавно переходят в hover-вид при появлении на экране */
+@media (hover: none) and (pointer: coarse) {
+  .btn-how.touch-lit,
+  .btn-signup.touch-lit {
+    background: var(--red);
+    color: var(--milk);
+  }
+  
+  /* Анимация стрелки для тач-устройств */
+  .btn-how.touch-lit .arrow-icon,
+  .btn-signup.touch-lit .arrow-icon {
+    transform: translateX(7px);
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--milk);
+  color: var(--milk);
+}
+
+.btn--outline:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--milk);
+}
+
+/* ---------- WATERMARK WORD ---------- */
+.watermark {
+  position: absolute;
+  font-family: 'Italiana', serif;
+  font-size: clamp(80px, 20vw, 300px);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.watermark--dark {
+  color: rgba(239, 235, 228, 0.05);
+}
+
+.watermark--light {
+  color: rgba(11, 10, 8, 0.06);
+}
+
+/* ---------- CURVED SECTION TRANSITION ---------- */
+.curved-top {
+  position: relative;
+}
+
+.curved-top::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -30%;
+  width: 160%;
+  height: 160px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.curved-top--milk::before {
+  background: var(--milk);
+}
+
+.curved-top--black::before {
+  background: var(--black);
+}
+
+/* ---------- REVEAL ANIMATION ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- HERO ENTRANCE ANIMATION ---------- */
+.hero__name {
+  animation: heroFadeIn 1.5s ease-out 0.3s both;
+}
+
+.hero__tagline {
+  animation: heroFadeInSimple 1.2s ease-out 0.8s both;
+}
+
+@keyframes heroFadeInSimple {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero__top {
+  animation: heroFadeIn 1s ease-out 0.5s both;
+}
+
+.hero__nav {
+  animation: heroSlideUp 0.8s ease-out 0.6s both;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black);
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    min-height: 92.4vh;
+    padding-bottom: 0;
+  }
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  animation: kenBurns 12s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 10, 8, 0.55);
+  z-index: 1;
+}
+
+.hero__top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 40px;
+}
+
+.hero__socials {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero__socials a {
+  color: var(--milk);
+  opacity: 0.8;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.hero__socials a:hover {
+  opacity: 1;
+  color: var(--red);
+}
+
+.hero__socials svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.hero__join {
+  color: var(--milk);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 26px;
+  background: transparent;
+  transition: background 0.3s ease, color 0.3s ease;
+  margin-left: auto;
+}
+
+.hero__join:hover {
+  background: var(--red);
+  color: var(--milk);
+}
+
+.hero__name {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  color: var(--milk);
+  font-family: 'Italiana', serif;
+  font-size: clamp(40px, 7vw, 90px);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin-top: -40px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  white-space: nowrap;
+  padding-inline: 4vw;
+}
+
+@media (min-width: 1281px) {
+  .hero__name {
+    font-size: clamp(44px, 7.7vw, 99px);
+  }
+}
+
+/* Тач-устройства: отключить анимацию и поднять имя на 35% вверх */
+@media (hover: none) and (pointer: coarse) {
+  .hero__name {
+    animation: none;
+    transform: translateY(-35%);
+  }
+}
+
+.hero__nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  background: var(--black);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero__nav nav {
+  display: flex;
+  gap: 40px;
+  position: relative;
+}
+
+.hero__nav a {
+  color: var(--milk);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.hero__nav nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--red);
+  transition: width 0.3s ease;
+}
+
+.hero__nav nav a:hover::after {
+  width: 100%;
+}
+
+.hero__nav a:hover {
+  color: var(--red);
+}
+
+.hero__tagline {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  text-align: center;
+  color: var(--milk);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.hero__tagline em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ============================================
+   MANIFESTO SECTION
+   ============================================ */
+.manifesto {
+  position: relative;
+  background: var(--black);
+  color: var(--milk);
+  padding: 160px 40px 120px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .manifesto {
+    padding-top: 80px;
+    margin-top: 0;
+  }
+}
+
+.manifesto__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.manifesto__headline {
+  grid-column: 1 / -1;
+  font-size: clamp(40px, 7vw, 90px);
+  margin-bottom: 40px;
+  color: var(--milk);
+}
+
+.manifesto__collage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+
+.manifesto__collage-img1 {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.manifesto__collage-img2 {
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+  width: 50%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  z-index: 2;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  filter: grayscale(100%);
+}
+
+.manifesto__text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+  line-height: 1.55;
+  color: var(--milk);
+  max-width: 40ch;
+  margin-bottom: 48px;
+  transform: translateY(-3.1em);
+}
+
+.manifesto__text em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Мобильные устройства и планшеты для секции manifesto */
+@media (max-width: 1024px) {
+  /* Контейнер секции - вертикальный стек */
+  .manifesto__inner {
+    display: block !important;
+    height: auto !important;
+  }
+
+  /* Убираем фиксированную высоту контейнера коллажа */
+  .manifesto__collage {
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  /* Большая красная фото */
+  .manifesto__collage-img1 {
+    position: relative !important;
+    width: 100% !important;
+    max-height: 42vh !important;
+    object-fit: cover !important;
+  }
+
+  /* Малая ч/б фото - поднято на 70% высоты */
+  .manifesto__collage-img2 {
+    position: relative !important;
+    width: 45% !important;
+    margin: -42% 12px 0 auto !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+
+  /* Текст — строго после фото в нормальном потоке */
+  .manifesto__text {
+    position: relative !important;
+    transform: none !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* Планшеты (481px–1024px) - увеличенные размеры */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .manifesto__collage-img1 {
+    max-height: 55vh !important;
+  }
+  
+  /* Ч/б фото поднято на 70% высоты */
+  .manifesto__collage-img2 {
+    width: 40% !important;
+    margin-top: -37% !important;
+  }
+  
+  .manifesto__text {
+    margin-top: 28px !important;
+  }
+}
+
+/* ============================================
+   PORTFOLIO SECTION
+   ============================================ */
+.portfolio {
+  position: relative;
+  background: var(--milk);
+  padding: 160px 40px 120px;
+  overflow: hidden;
+}
+
+.portfolio__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio__title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 14px;
+  margin-bottom: 60px;
+  color: var(--black);
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.portfolio__card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.portfolio__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,10,8,0.5) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.portfolio__card:hover::after {
+  opacity: 1;
+}
+
+.portfolio__card-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.portfolio__card {
+  cursor: zoom-in;
+}
+
+.portfolio__card:hover .portfolio__card-img {
+  transform: scale(1.04);
+}
+
+
+
+.portfolio__card-link {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--milk);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease;
+}
+
+.portfolio__card:hover .portfolio__card-link {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--red);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+.services {
+  position: relative;
+  background: var(--black);
+  color: var(--milk);
+  padding: 140px 40px 120px;
+  overflow: hidden;
+}
+
+.services__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.services__headline {
+  font-size: clamp(36px, 6vw, 80px);
+  margin-bottom: 80px;
+  color: var(--milk);
+}
+
+.services__steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 80px;
+  margin-bottom: 60px;
+}
+
+.services__step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.services__step-num {
+  font-family: 'Italiana', serif;
+  font-size: clamp(48px, 5vw, 72px);
+  color: var(--smoke);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.services__step-content h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: var(--milk);
+}
+
+.services__step-content p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--smoke);
+}
+
+/* ============================================
+   SOCIAL SECTION
+   ============================================ */
+.social {
+  position: relative;
+  background: var(--milk);
+  padding: clamp(40px, 6vh, 72px) 40px;
+  overflow: visible;
+  z-index: 3;
+}
+
+.social__watermark-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.social__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+.social__inner > div:first-child {
+  margin-top: 150px;
+  position: relative;
+  z-index: 2;
+}
+
+.social__headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.social__text {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
+.social__text em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--black);
+}
+
+.social__text strong {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.7em;
+}
+
+.social__desc {
+  font-size: 15px;
+  color: rgba(11,10,8,.55);
+  line-height: 1.7;
+  margin-top: 24px;
+}
+
+/* Instagram shot */
+.insta-shot {
+  position: absolute;
+  top: 50%;
+  left: 69%;
+  transform: translate(-50%, -59%);
+  aspect-ratio: 1284 / 2646;
+  overflow: hidden;
+  height: clamp(600px, 86vh, 920px);
+  width: auto;
+  max-width: 100%;
+  z-index: 3;
+}
+
+/* Планшеты: телефон под абзацем "СЪЁМКА" */
+@media (max-width: 1440px) and (min-width: 1024px) {
+  .insta-shot {
+    left: 76%;
+  }
+}
+
+/* Мобильные планшеты: телефон под абзацем "СЪЁМКА" */
+@media (max-width: 1024px) {
+  .insta-shot {
+    left: 80%;
+  }
+}
+
+/* Планшеты 481px–1024px: текст слева, телефон под буквой R */
+@media (min-width: 481px) and (max-width: 1024px) {
+  /* Текст занимает левую половину, перенос только по словам */
+  .social__inner > div:first-child {
+    max-width: 55% !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+  }
+  
+  /* Телефон центрирован под буквой R водяного слова */
+  .insta-shot {
+    left: 70% !important;
+    right: auto !important;
+    transform: scale(0.6) translate(-57.5%, -95%) !important;
+  }
+}
+
+.insta-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+
+
+/* ============================================
+   NEWSLETTER SECTION
+   ============================================ */
+.newsletter {
+  position: relative;
+  padding: 140px 40px 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletter__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.newsletter__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(100%);
+}
+
+.newsletter__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 10, 8, 0.75);
+}
+
+.newsletter__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  text-align: center;
+  color: var(--milk);
+}
+
+.newsletter__inner .btn {
+  background: var(--red);
+  color: var(--milk);
+  transition: background 0.35s ease, border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+
+.newsletter__inner .btn:hover {
+  background: var(--black);
+  color: var(--milk);
+  border: 1px solid rgba(239,235,228,.35);
+}
+
+.newsletter__headline {
+  font-size: clamp(32px, 5vw, 56px);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.newsletter__headline em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.newsletter__headline strong {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.newsletter__desc {
+  font-size: 16px;
+  color: var(--smoke);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+/* Мобильные устройства для секции newsletter */
+@media (max-width: 480px) {
+  .newsletter {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .newsletter__inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .newsletter__headline {
+    font-size: clamp(22px, 7.5vw, 34px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  position: relative;
+  background: var(--black);
+  color: var(--milk);
+  overflow: hidden;
+}
+
+/* Marquee */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line-on-black);
+}
+
+.marquee__track {
+  display: inline-flex;
+  animation: marqueeScroll 30s ease-in-out infinite alternate;
+}
+
+.marquee__text {
+  font-family: 'Italiana', serif;
+  font-size: clamp(48px, 8vw, 120px);
+  color: var(--milk);
+  padding-right: 60px;
+  flex-shrink: 0;
+  opacity: 0.12;
+}
+
+.marquee__text:nth-child(even) {
+  color: var(--red);
+  opacity: 0.15;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.footer__cta {
+  text-align: center;
+  padding: 80px 40px 60px;
+}
+
+.footer__cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: clamp(24px, 4vw, 42px);
+  margin-bottom: 32px;
+}
+
+.footer__bottom {
+  border-top: 1px solid var(--line-on-black);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.footer__bottom-nav {
+  justify-self: start;
+}
+
+.footer__bottom-social {
+  justify-self: center;
+}
+
+.footer__copy {
+  justify-self: end;
+}
+
+.footer__bottom-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__bottom-nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--smoke);
+  transition: color 0.3s;
+}
+
+.footer__bottom-nav a:hover {
+  color: var(--red);
+}
+
+.footer__bottom-social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer__bottom-social a {
+  color: var(--smoke);
+  transition: color 0.3s;
+}
+
+.footer__bottom-social a:hover {
+  color: var(--red);
+}
+
+.footer__bottom-social svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Тач-устройства: увеличиваем иконки соцсетей в футере */
+@media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  .footer__bottom-social a {
+    padding: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer__bottom-social svg {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+.footer__copy {
+  font-size: 12px;
+  color: var(--smoke);
+}
+
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Большие экраны - увеличенные карточки */
+@media (min-width: 1440px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  
+  .portfolio__card {
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .portfolio__card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .manifesto__inner {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__nav nav {
+    display: none;
+  }
+  
+
+  
+  .manifesto__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .services__steps {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .social__inner {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .social__inner > div:first-child {
+    margin-top: 0;
+  }
+  
+  .hero__tagline {
+    white-space: normal;
+    text-align: center;
+    font-size: 14px;
+    padding: 0 20px;
+  }
+  
+  .footer__bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer__bottom-nav,
+  .footer__bottom-social,
+  .footer__copy {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .manifesto {
+    padding-bottom: 75px !important;
+  }
+  
+  .portfolio {
+    padding-top: 68px !important;
+    padding-bottom: 68px !important;
+  }
+  
+  .services {
+    padding-top: 75px !important;
+    padding-bottom: 160px !important;
+  }
+  
+  /* Секция Instagram - уменьшить отступы */
+  .social {
+    padding-top: 30px !important;
+    padding-bottom: 27px !important;
+  }
+  
+  /* Поднять водяное слово "РАБОТЫ" выше */
+  .portfolio .watermark {
+    top: 3.3% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .hero__top {
+    padding: 20px;
+  }
+  
+  .hero__socials {
+    gap: 12px;
+  }
+
+  .hero__socials svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .manifesto,
+  .portfolio,
+  .services,
+  .social,
+  .newsletter {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
+  .social {
+    padding-bottom: 40px;
+  }
+  
+  .insta-shot {
+    position: static;
+    transform: none;
+    width: min(72vw, 340px);
+    height: auto;
+    margin: 2rem auto 0;
+  }
+  .hero__tagline {
+    white-space: normal;
+    font-size: 13px;
+    padding: 0 20px;
+    bottom: 90px;
+    max-width: 90%;
+  }
+
+  .services__steps {
+    gap: 32px;
+  }
+
+  .footer__bottom-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+#portfolio-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 10, 8, 0.94);
+  
+  /* КЛЮЧ: всегда flex, видимость только через opacity + visibility */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+  overscroll-behavior: contain;
+}
+
+#portfolio-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.4s ease, visibility 0s linear 0s;
+}
+
+#portfolio-lightbox .lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+
+#portfolio-lightbox.active .lightbox-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#portfolio-lightbox .lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  background: none;
+  border: none;
+  color: #EFEBE4;
+  font-size: 32px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* === ПЛАВНОЕ ПОЯВЛЕНИЕ ТЕЛЕФОНА (ЧИСТЫЙ FADE-IN) === */
+.insta-shot {
+  opacity: 0;
+  transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.insta-shot.insta-visible {
+  opacity: 1;
+}
