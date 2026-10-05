@@ -264,6 +264,7 @@ export default function App() {
           <img
             src="https://i.postimg.cc/MZmBXBHJ/hiro-fon-kati.webp"
             alt="hiro-fon-kati"
+            onLoad={(e) => e.currentTarget.parentElement?.classList.add('loaded')}
           />
         </div>
         <div className="hero__overlay"></div>

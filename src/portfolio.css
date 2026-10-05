@@ -483,6 +483,12 @@ a {
   z-index: 0;
   overflow: hidden;
   will-change: transform;
+  opacity: 0;
+  transition: opacity 1.2s ease-in;
+}
+
+.hero__bg.loaded {
+  opacity: 1;
 }
 
 .hero__bg img {
