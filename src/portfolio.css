@@ -1564,3 +1564,13 @@ a {
 .insta-shot.insta-visible {
   opacity: 1;
 }
+
+/* Тач-экраны до 1024px: поднять заголовок и лейбл на 8vh */
+@media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+  .hero__name {
+    transform: translateY(calc(-35% - 8vh));
+  }
+  .hero__tagline {
+    bottom: calc(90px + 8vh);
+  }
+}
