@@ -664,6 +664,15 @@ a {
   font-weight: 500;
 }
 
+.hero__frame {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.22em;
+  letter-spacing: 0.2em;
+  color: var(--red);
+  vertical-align: super;
+  margin-left: 0.5em;
+}
+
 
 
 /* ============================================
