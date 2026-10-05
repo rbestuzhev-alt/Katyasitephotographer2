@@ -113,6 +113,7 @@ body.loaded::after {
 
 .line-mask .line-inner {
   display: inline-block;
+  position: relative;
   transform: translateY(110%);
   transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: calc(var(--i, 0) * 100ms);
@@ -159,6 +160,7 @@ body.loaded::after {
   }
 
   .line-mask .line-inner {
+    position: relative;
     transform: translateY(0) !important;
     transition: none !important;
   }
@@ -669,8 +671,8 @@ a {
   font-size: 0.22em;
   letter-spacing: 0.2em;
   color: var(--red);
-  vertical-align: super;
-  margin-left: 0.5em;
+  position: absolute;
+  margin-left: 0.3em;
 }
 
 
