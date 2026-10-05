@@ -211,7 +211,7 @@ body {
 body::after {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -100%;
   z-index: 9999;
   pointer-events: none;
   opacity: 0.05;
