@@ -1571,6 +1571,6 @@ a {
     transform: translateY(calc(-35% - 8vh));
   }
   .hero__tagline {
-    bottom: calc(90px + 6vh);
+    bottom: calc(90px + 4vh);
   }
 }
