@@ -288,7 +288,6 @@ export default function App() {
               </svg>
             </a>
           </div>
-          <p className="hero__filmnote touch-only">35MM · ISO 400 · BARNAUL</p>
           <a href="#scroll-to-insta-btn" className="hero__join arrow-link mouse-only">
             ПОДПИСАТЬСЯ <ArrowIcon />
           </a>
@@ -317,7 +316,6 @@ export default function App() {
         <p className="hero__tagline">
           Ловлю свет и создаю <em>истории</em>.
         </p>
-        <span className="watermark watermark--dark hero__watermark">СВЕТ</span>
       </header>
 
       {/* ========== МАНИФЕСТ ========== */}
