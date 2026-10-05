@@ -725,6 +725,9 @@ a {
   z-index: 2;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   filter: grayscale(100%);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .manifesto__text {
