@@ -672,9 +672,10 @@ a {
   letter-spacing: 0.2em;
   color: var(--red);
   position: absolute;
-  right: -7em;
+  right: -2.5em;
   top: 50%;
   transform: translateY(-50%);
+  white-space: nowrap;
 }
 
 
