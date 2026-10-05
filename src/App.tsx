@@ -268,8 +268,8 @@ export default function App() {
         </div>
         <div className="hero__overlay"></div>
 
+        <span className="hero__filmwatermark touch-only">35MM · ISO 400</span>
         <div className="hero__top">
-          <span className="hero__filmwatermark touch-only">35MM · ISO 400</span>
           <div className="hero__socials mouse-only">
             <a href="https://www.instagram.com/eppho.to/?hl=ru" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
