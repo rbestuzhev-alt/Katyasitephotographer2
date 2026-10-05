@@ -465,6 +465,7 @@ a {
   justify-content: center;
   align-items: center;
   background-color: var(--black);
+  overflow: hidden;
 }
 
 @media (max-width: 1024px) {
@@ -662,6 +663,23 @@ a {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 500;
+}
+
+.hero__filmnote {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: rgba(239,235,228,0.5);
+  padding-top: 6px;
+}
+
+.hero__watermark {
+  top: auto;
+  right: auto;
+  bottom: -6%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
 /* ============================================
