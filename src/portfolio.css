@@ -667,7 +667,7 @@ a {
 .hero__filmwatermark {
   position: absolute;
   top: 34%;
-  right: -11%;
+  right: -10%;
   z-index: 3;
   font-family: 'Space Mono', monospace;
   font-size: clamp(21px, 5.7vw, 42px);
