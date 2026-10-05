@@ -268,7 +268,6 @@ export default function App() {
         </div>
         <div className="hero__overlay"></div>
 
-        <span className="hero__filmwatermark touch-only">35MM · ISO 400</span>
         <div className="hero__top">
           <div className="hero__socials mouse-only">
             <a href="https://www.instagram.com/eppho.to/?hl=ru" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
