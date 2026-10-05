@@ -668,7 +668,7 @@ a {
 
 .hero__frame {
   font-family: 'Space Mono', monospace;
-  font-size: 0.22em;
+  font-size: 0.38em;
   letter-spacing: 0.2em;
   color: var(--red);
   position: absolute;
