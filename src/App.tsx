@@ -316,7 +316,6 @@ export default function App() {
         <p className="hero__tagline">
           Ловлю свет и создаю <em>истории</em>.
         </p>
-        <span className="hero__sidecap touch-only">EDITORIAL / LOVE STORY — BARNAUL</span>
       </header>
 
       {/* ========== МАНИФЕСТ ========== */}
