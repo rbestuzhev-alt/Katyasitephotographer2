@@ -1318,10 +1318,14 @@ a {
 /* Тач-устройства: увеличиваем иконки соцсетей в футере */
 @media (max-width: 1024px) and (hover: none) and (pointer: coarse) {
   .footer__bottom-social a {
-    padding: 22px;
+    padding: 22px 18px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .footer__bottom-social {
+    gap: 12px;
   }
 
   .footer__bottom-social svg {
