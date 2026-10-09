@@ -1912,7 +1912,7 @@ a {
 
   .pricing__card:has(+ .pricing-card--active)::after,
   .pricing-card--active + .pricing__card::after {
-    content: 'листай';
+    content: 'листайте';
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
