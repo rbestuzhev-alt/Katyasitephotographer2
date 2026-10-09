@@ -1086,6 +1086,14 @@ a {
   }
 }
 
+/* Surface Pro 10 и подобные устройства */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .insta-shot {
+    width: 45%;
+    max-width: 420px;
+  }
+}
+
 /* Планшеты 481px–1024px: текст слева, телефон под буквой R */
 @media (min-width: 481px) and (max-width: 1024px) {
   /* Текст занимает левую половину, перенос только по словам */
