@@ -360,9 +360,6 @@ export default function App() {
       {/* ========== ЦЕНЫ ========== */}
       <section className="pricing" id="pricing">
         <div className="pricing__inner">
-          <h2 className="pricing__title line-mask">
-            <span className="line"><span className="line-inner">ЦЕНЫ</span></span>
-          </h2>
           <div className="pricing__cards">
             <div className="pricing__card">
               <div className="pricing__card-header">
