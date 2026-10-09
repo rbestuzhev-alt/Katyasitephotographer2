@@ -35,6 +35,42 @@ const Preloader = () => {
 
 export default function App() {
 
+  const pricingCardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = pricingCardsRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const containerCenter = container.scrollLeft + container.offsetWidth / 2;
+      const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
+      
+      cards.forEach((card) => {
+        card.classList.remove('pricing-card--active');
+      });
+
+      let closest: HTMLElement | undefined;
+      let minDistance = Infinity;
+
+      cards.forEach((card) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closest = card;
+        }
+      });
+
+      if (closest) {
+        closest.classList.add('pricing-card--active');
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // установить активную карточку при загрузке
+
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     // JS-фолбэк для тач-устройств
@@ -360,7 +396,7 @@ export default function App() {
       {/* ========== ЦЕНЫ ========== */}
       <section className="pricing" id="pricing">
         <div className="pricing__inner">
-          <div className="pricing__cards">
+          <div className="pricing__cards" ref={pricingCardsRef}>
             <div className="pricing__card">
               <div className="pricing__card-header">
                 <span className="pricing__duration">1 ЧАС</span>
