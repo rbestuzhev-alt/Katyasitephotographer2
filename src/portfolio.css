@@ -1904,4 +1904,37 @@ a {
   50% { opacity: 1; }
 }
 
+/* Подсказка о свайпе на боковых карточках (тач, <900px) */
+@media (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  .pricing__card {
+    position: relative;
+  }
+
+  .pricing__card:has(+ .pricing-card--active)::after,
+  .pricing-card--active + .pricing__card::after {
+    content: 'листай';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    pointer-events: none;
+    animation: hintPulse 2s ease-in-out infinite;
+  }
+
+  /* Карточка слева от центральной — подсказка у её правого (видимого) края */
+  .pricing__card:has(+ .pricing-card--active)::after {
+    right: 10px;
+  }
+
+  /* Карточка справа от центральной — подсказка у её левого (видимого) края */
+  .pricing-card--active + .pricing__card::after {
+    left: 10px;
+  }
+}
+
 
