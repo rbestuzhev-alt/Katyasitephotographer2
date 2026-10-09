@@ -41,6 +41,7 @@ export default function App() {
     const container = pricingCardsRef.current;
     if (!container) return;
 
+    // Активная (центральная) карточка
     const handleScroll = () => {
       const containerCenter = container.scrollLeft + container.offsetWidth / 2;
       const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
@@ -69,37 +70,42 @@ export default function App() {
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    let wheelHandler: ((e: WheelEvent) => void) | null = null;
-
-    const attachWheel = () => {
-      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      const isNarrow = window.innerWidth <= 900;
-
-      if (!isTouch && isNarrow && !wheelHandler) {
-        wheelHandler = (e: WheelEvent) => {
-          const maxScroll = container.scrollWidth - container.offsetWidth;
-          const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
-          const atEnd = container.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
-
-          if (!atStart && !atEnd) {
-            e.preventDefault();
-            container.scrollLeft += e.deltaY * 0.35;
-          }
-        };
-        container.addEventListener('wheel', wheelHandler, { passive: false });
-      } else if ((isTouch || !isNarrow) && wheelHandler) {
-        container.removeEventListener('wheel', wheelHandler);
-        wheelHandler = null;
-      }
+    // Мышь + узкий экран
+    const isMouseNarrow = () => {
+      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      return !isTouch && window.innerWidth <= 900;
     };
 
-    attachWheel();
-    window.addEventListener('resize', attachWheel);
+    // Перехват колеса на всём окне, не только над карточками
+    const wheelHandler = (e: WheelEvent) => {
+      if (!isMouseNarrow()) return;
+      // Не мешаем намеренному горизонтальному скроллу (shift+колесо)
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+
+      const rect = container.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const inCenter = rect.top <= viewportCenter && rect.bottom >= viewportCenter;
+      if (!inCenter) return;
+
+      const maxScroll = container.scrollWidth - container.offsetWidth;
+
+      if (e.deltaY > 0 && container.scrollLeft < maxScroll - 1) {
+        // Вниз: крутим карточки вправо, пока они не кончились
+        e.preventDefault();
+        container.scrollLeft += e.deltaY * 0.35;
+      } else if (e.deltaY < 0 && container.scrollLeft > 0) {
+        // Вверх: крутим карточки влево, пока они не вернулись к началу
+        e.preventDefault();
+        container.scrollLeft += e.deltaY * 0.35;
+      }
+      // Иначе не трогаем: страница скроллится вертикально как обычно
+    };
+
+    window.addEventListener('wheel', wheelHandler, { passive: false });
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', attachWheel);
-      if (wheelHandler) container.removeEventListener('wheel', wheelHandler);
+      window.removeEventListener('wheel', wheelHandler);
     };
   }, []);
 
