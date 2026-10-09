@@ -1630,3 +1630,11 @@ a {
     height: clamp(600px, 86vh, 920px) !important;
   }
 }
+
+/* Surface Pro (900px - 1024px): сужаем текстовый блок, чтобы он был ближе к телефону */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .social__inner > div:first-child {
+    max-width: 48% !important;
+    padding-right: 20px !important;
+  }
+}
