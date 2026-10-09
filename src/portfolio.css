@@ -1152,6 +1152,7 @@ a {
   
   .pricing__card {
     flex: 0 0 85%;
+    max-width: 340px;
   }
 }
 
