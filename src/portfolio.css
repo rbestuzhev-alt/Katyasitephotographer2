@@ -1636,3 +1636,11 @@ a {
     height: 700px !important;
   }
 }
+
+/* Surface Pro: масштабирование телефона */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .insta-shot {
+    transform: scale(1.15) !important;
+    transform-origin: center center !important;
+  }
+}
