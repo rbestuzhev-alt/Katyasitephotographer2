@@ -70,35 +70,52 @@ export default function App() {
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Мышь + узкий экран
     const isMouseNarrow = () => {
       const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
       return !isTouch && window.innerWidth <= 900;
     };
 
-    // Перехват колеса на всём окне, не только над карточками
+    let engaged = false; // захвачен ли скролл карточками
+
     const wheelHandler = (e: WheelEvent) => {
       if (!isMouseNarrow()) return;
-      // Не мешаем намеренному горизонтальному скроллу (shift+колесо)
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
 
       const rect = container.getBoundingClientRect();
-      const viewportCenter = window.innerHeight / 2;
-      const inCenter = rect.top <= viewportCenter && rect.bottom >= viewportCenter;
-      if (!inCenter) return;
+      const center = window.innerHeight / 2;
+      const inZone = rect.top <= center && rect.bottom >= center;
 
       const maxScroll = container.scrollWidth - container.offsetWidth;
+      const atEnd = container.scrollLeft >= maxScroll - 1;
+      const atStart = container.scrollLeft <= 1;
 
-      if (e.deltaY > 0 && container.scrollLeft < maxScroll - 1) {
-        // Вниз: крутим карточки вправо, пока они не кончились
-        e.preventDefault();
-        container.scrollLeft += e.deltaY * 0.35;
-      } else if (e.deltaY < 0 && container.scrollLeft > 0) {
-        // Вверх: крутим карточки влево, пока они не вернулись к началу
-        e.preventDefault();
-        container.scrollLeft += e.deltaY * 0.35;
+      if (e.deltaY > 0) {
+        // Скролл вниз
+        if (!engaged && inZone && !atEnd) engaged = true;
+
+        if (engaged && !atEnd) {
+          e.preventDefault();
+          container.scrollLeft = Math.min(maxScroll, container.scrollLeft + e.deltaY * 0.35);
+          if (maxScroll - container.scrollLeft < 1) container.scrollLeft = maxScroll;
+        } else {
+          // Карточки прокручены до конца — отпускаем страницу
+          if (engaged) container.scrollLeft = maxScroll;
+          engaged = false;
+        }
+      } else {
+        // Скролл вверх
+        if (!engaged && inZone && !atStart) engaged = true;
+
+        if (engaged && !atStart) {
+          e.preventDefault();
+          container.scrollLeft = Math.max(0, container.scrollLeft + e.deltaY * 0.35);
+          if (container.scrollLeft < 1) container.scrollLeft = 0;
+        } else {
+          // Карточки у начала — отпускаем страницу вверх
+          if (engaged) container.scrollLeft = 0;
+          engaged = false;
+        }
       }
-      // Иначе не трогаем: страница скроллится вертикально как обычно
     };
 
     window.addEventListener('wheel', wheelHandler, { passive: false });
