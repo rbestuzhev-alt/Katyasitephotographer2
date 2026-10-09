@@ -41,6 +41,10 @@ export default function App() {
     const container = pricingCardsRef.current;
     if (!container) return;
 
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const isNarrow = window.innerWidth <= 900;
+
+    // Логика активной карточки (работает всегда)
     const handleScroll = () => {
       const containerCenter = container.scrollLeft + container.offsetWidth / 2;
       const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
@@ -67,9 +71,27 @@ export default function App() {
     };
 
     container.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // установить активную карточку при загрузке
+    handleScroll();
 
-    return () => container.removeEventListener('scroll', handleScroll);
+    // Перехват вертикального скролла → горизонтальный (только мышь на узких экранах)
+    let wheelHandler: ((e: WheelEvent) => void) | null = null;
+    if (!isTouch && isNarrow) {
+      wheelHandler = (e: WheelEvent) => {
+        const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
+        const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1 && e.deltaY > 0;
+
+        if (!atStart && !atEnd) {
+          e.preventDefault();
+          container.scrollLeft += e.deltaY;
+        }
+      };
+      container.addEventListener('wheel', wheelHandler, { passive: false });
+    }
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+      if (wheelHandler) container.removeEventListener('wheel', wheelHandler);
+    };
   }, []);
 
   useEffect(() => {
