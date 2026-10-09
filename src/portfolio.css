@@ -693,7 +693,7 @@ a {
   position: relative;
   background: var(--black);
   color: var(--milk);
-  padding: 160px 40px 120px;
+  padding: 160px 40px 60px;
   overflow: hidden;
 }
 
@@ -990,7 +990,7 @@ a {
   position: relative;
   background: var(--black);
   color: var(--milk);
-  padding: 48px 40px 120px;
+  padding: 24px 40px 120px;
   overflow: hidden;
 }
 
