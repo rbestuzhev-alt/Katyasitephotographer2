@@ -1144,9 +1144,25 @@ a {
 /* Мобильные устройства */
 @media (max-width: 900px) {
   .pricing__cards {
-    grid-template-columns: 1fr;
-    max-width: 420px;
-    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 0 20px 20px;
+    max-width: 100%;
+    margin: 0;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .pricing__cards::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+  
+  .pricing__card {
+    flex: 0 0 85%;
+    max-width: 340px;
+    scroll-snap-align: center;
   }
 }
 
