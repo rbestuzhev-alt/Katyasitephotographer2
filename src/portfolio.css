@@ -1628,3 +1628,11 @@ a {
     transform-origin: center center;
   }
 }
+
+/* Surface Pro: увеличение контейнера телефона */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .insta-shot {
+    width: 320px !important;
+    height: 700px !important;
+  }
+}
