@@ -44,7 +44,7 @@ export default function App() {
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const isNarrow = window.innerWidth <= 900;
 
-    // Логика активной карточки (работает всегда)
+    // Активная (центральная) карточка
     const handleScroll = () => {
       const containerCenter = container.scrollLeft + container.offsetWidth / 2;
       const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
@@ -73,34 +73,17 @@ export default function App() {
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Перехват вертикального скролла → горизонтальный (только мышь на узких экранах)
+    // Мышь на узких экранах: вертикальный скролл -> медленный горизонтальный
     let wheelHandler: ((e: WheelEvent) => void) | null = null;
-    let targetScroll = container.scrollLeft;
-    let rafId: number | null = null;
-
     if (!isTouch && isNarrow) {
-      const animate = () => {
-        const diff = targetScroll - container.scrollLeft;
-        if (Math.abs(diff) < 0.5) {
-          container.scrollLeft = targetScroll;
-          rafId = null;
-          return;
-        }
-        container.scrollLeft += diff * 0.12;
-        rafId = requestAnimationFrame(animate);
-      };
-
       wheelHandler = (e: WheelEvent) => {
         const maxScroll = container.scrollWidth - container.offsetWidth;
-        const atStart = targetScroll <= 0 && e.deltaY < 0;
-        const atEnd = targetScroll >= maxScroll - 1 && e.deltaY > 0;
+        const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
+        const atEnd = container.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
 
         if (!atStart && !atEnd) {
           e.preventDefault();
-          targetScroll = Math.max(0, Math.min(maxScroll, targetScroll + e.deltaY * 0.35));
-          if (rafId === null) rafId = requestAnimationFrame(animate);
-        } else {
-          targetScroll = container.scrollLeft;
+          container.scrollLeft += e.deltaY * 0.35;
         }
       };
       container.addEventListener('wheel', wheelHandler, { passive: false });
@@ -109,7 +92,6 @@ export default function App() {
     return () => {
       container.removeEventListener('scroll', handleScroll);
       if (wheelHandler) container.removeEventListener('wheel', wheelHandler);
-      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
