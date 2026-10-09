@@ -73,7 +73,7 @@ export default function App() {
     // Клик по боковой карточке — плавная прокрутка к ней (только мышь + экран <= 900px)
     const handleClick = (e: MouseEvent) => {
       const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      if (isTouch || window.innerWidth > 900) return;
+      if (isTouch || window.innerWidth > 740) return;
 
       const card = (e.target as HTMLElement).closest('.pricing__card') as HTMLElement | null;
       if (!card || !container.contains(card)) return;

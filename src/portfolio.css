@@ -1133,7 +1133,7 @@ a {
 }
 
 /* Мобильные устройства */
-@media (max-width: 900px) {
+@media (max-width: 740px) {
   .pricing__cards {
     display: flex;
     overflow-x: auto;
@@ -1847,7 +1847,7 @@ a {
   opacity: 1;
 }
 
-@media (min-width: 901px) {
+@media (min-width: 741px) {
   .pricing__card {
     transform: none !important;
     opacity: 1 !important;
@@ -1855,7 +1855,7 @@ a {
 }
 
 /* Мышиные экраны уже 900px: убираем горизонтальную прокрутку, навигация кликами */
-@media (max-width: 900px) and (hover: hover) and (pointer: fine) {
+@media (max-width: 740px) and (hover: hover) and (pointer: fine) {
   .pricing__cards {
     overflow-x: hidden;
   }
@@ -1865,8 +1865,8 @@ a {
   }
 }
 
-/* Подсказка о клике на боковых карточках (мышь, <900px) */
-@media (max-width: 900px) and (hover: hover) and (pointer: fine) {
+/* Подсказка о клике на боковых карточках (мышь, <740px) */
+@media (max-width: 740px) and (hover: hover) and (pointer: fine) {
   .pricing__card {
     position: relative;
   }
@@ -1900,13 +1900,24 @@ a {
   }
 }
 
+/* Диапазон 741-900px: компактная сетка */
+@media (min-width: 741px) and (max-width: 900px) {
+  .pricing__cards {
+    gap: 16px;
+  }
+
+  .pricing__card {
+    padding: 32px 20px;
+  }
+}
+
 @keyframes hintPulse {
   0%, 100% { color: rgba(192, 41, 26, 0.35); }
   50% { color: rgba(192, 41, 26, 1); }
 }
 
-/* Подсказка о свайпе на боковых карточках (тач, <900px) */
-@media (max-width: 900px) and (hover: none) and (pointer: coarse) {
+/* Подсказка о свайпе на боковых карточках (тач, <740px) */
+@media (max-width: 740px) and (hover: none) and (pointer: coarse) {
   .pricing__card {
     position: relative;
   }
