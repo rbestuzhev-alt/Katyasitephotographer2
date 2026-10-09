@@ -1634,6 +1634,6 @@ a {
 /* Surface Pro (900px - 1024px): сдвигаем текст правее, ближе к телефону */
 @media (min-width: 900px) and (max-width: 1024px) {
   .social__inner > div:first-child {
-    margin-left: 15% !important;
+    margin-left: 20% !important;
   }
 }
