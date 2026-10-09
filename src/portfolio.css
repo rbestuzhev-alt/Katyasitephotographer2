@@ -1639,8 +1639,8 @@ a {
   
   .insta-shot {
     left: 72% !important;
-    width: 340px !important;
-    height: 700px !important;
+    width: 375px !important;
+    height: 770px !important;
     transform: scale(0.95) translate(-50%, -59%) !important;
   }
 }
