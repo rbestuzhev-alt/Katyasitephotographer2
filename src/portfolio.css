@@ -1636,4 +1636,8 @@ a {
   .social__inner > div:first-child {
     margin-left: 20% !important;
   }
+  
+  .insta-shot {
+    left: 72% !important;
+  }
 }
