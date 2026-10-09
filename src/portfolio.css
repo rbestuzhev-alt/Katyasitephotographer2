@@ -1621,26 +1621,12 @@ a {
   }
 }
 
-/* Surface Pro: увеличение телефона в секции Instagram */
+/* Surface Pro (900px - 1024px): исправляем мелкий телефон */
 @media (min-width: 900px) and (max-width: 1024px) {
   .insta-shot {
-    transform: scale(0.9);
-    transform-origin: center center;
-  }
-}
-
-/* Surface Pro: увеличение контейнера телефона */
-@media (min-width: 900px) and (max-width: 1024px) {
-  .insta-shot {
-    width: 320px !important;
-    height: 700px !important;
-  }
-}
-
-/* Surface Pro: масштабирование телефона */
-@media (min-width: 900px) and (max-width: 1024px) {
-  .insta-shot {
-    transform: scale(1.15) translateY(-40px) !important;
-    transform-origin: center top !important;
+    transform: scale(1.15) translate(-50%, -59%) !important;
+    transform-origin: center center !important;
+    width: auto !important;
+    height: clamp(600px, 86vh, 920px) !important;
   }
 }
