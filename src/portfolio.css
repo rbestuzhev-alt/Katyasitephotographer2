@@ -1153,7 +1153,6 @@ a {
   .pricing__card {
     flex: 0 0 85%;
     max-width: 340px;
-    scroll-snap-align: center;
   }
 }
 
@@ -1834,13 +1833,6 @@ a {
 @media (min-width: 1025px) {
   .pricing {
     padding-top: 44px !important;
-  }
-}
-
-/* Snap только для тач-устройств */
-@media (max-width: 900px) and (hover: none) and (pointer: coarse) {
-  .pricing__cards {
-    scroll-snap-type: x mandatory;
   }
 }
 
