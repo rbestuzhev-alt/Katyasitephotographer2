@@ -1872,8 +1872,8 @@ a {
     position: relative;
   }
 
-  .pricing__card:has(+ .pricing-card--active)::after,
-  .pricing-card--active + .pricing__card::after {
+  /* Подсказка есть на всех карточках, но скрыта — плавно проявляется только на боковых */
+  .pricing__card::after {
     content: 'нажмите';
     position: absolute;
     top: 50%;
@@ -1885,23 +1885,25 @@ a {
     text-transform: uppercase;
     color: var(--red);
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
     animation: hintPulse 2s ease-in-out infinite;
   }
 
-  /* Карточка слева от центральной — подсказка у её правого (видимого) края */
   .pricing__card:has(+ .pricing-card--active)::after {
+    opacity: 1;
     right: 10px;
   }
 
-  /* Карточка справа от центральной — подсказка у её левого (видимого) края */
   .pricing-card--active + .pricing__card::after {
+    opacity: 1;
     left: 10px;
   }
 }
 
 @keyframes hintPulse {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+  0%, 100% { color: rgba(192, 41, 26, 0.35); }
+  50% { color: rgba(192, 41, 26, 1); }
 }
 
 /* Подсказка о свайпе на боковых карточках (тач, <900px) */
@@ -1910,8 +1912,7 @@ a {
     position: relative;
   }
 
-  .pricing__card:has(+ .pricing-card--active)::after,
-  .pricing-card--active + .pricing__card::after {
+  .pricing__card::after {
     content: 'листайте';
     position: absolute;
     top: 50%;
@@ -1923,16 +1924,18 @@ a {
     text-transform: uppercase;
     color: var(--red);
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
     animation: hintPulse 2s ease-in-out infinite;
   }
 
-  /* Карточка слева от центральной — подсказка у её правого (видимого) края */
   .pricing__card:has(+ .pricing-card--active)::after {
+    opacity: 1;
     right: 10px;
   }
 
-  /* Карточка справа от центральной — подсказка у её левого (видимого) края */
   .pricing-card--active + .pricing__card::after {
+    opacity: 1;
     left: 10px;
   }
 }
