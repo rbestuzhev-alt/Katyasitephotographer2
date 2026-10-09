@@ -357,6 +357,72 @@ export default function App() {
           </div>
       </section>
 
+      {/* ========== ЦЕНЫ ========== */}
+      <section className="pricing" id="pricing">
+        <div className="pricing__inner">
+          <h2 className="pricing__title line-mask">
+            <span className="line"><span className="line-inner">ЦЕНЫ</span></span>
+          </h2>
+          <div className="pricing__cards">
+            <div className="pricing__card">
+              <div className="pricing__card-header">
+                <span className="pricing__duration">1 ЧАС</span>
+                <span className="pricing__subtitle">Мини-съёмка</span>
+              </div>
+              <p className="pricing__desc">Идеально для тех, кто хочет попробовать формат и получить несколько ярких кадров</p>
+              <ul className="pricing__list">
+                <li>1 локация</li>
+                <li>10 фото в ретуши</li>
+                <li>Готовность — 7 дней</li>
+              </ul>
+              <div className="pricing__price">
+                <span className="pricing__amount">8 000</span>
+                <span className="pricing__currency">₽</span>
+              </div>
+              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
+            </div>
+
+            <div className="pricing__card pricing__card--featured">
+              <div className="pricing__card-header">
+                <span className="pricing__duration">2 ЧАСА</span>
+                <span className="pricing__subtitle">Стандарт</span>
+              </div>
+              <p className="pricing__desc">Оптимальный формат для портретной съёмки, контента и личных проектов</p>
+              <ul className="pricing__list">
+                <li>До 2 локаций</li>
+                <li>25 фото в ретуши</li>
+                <li>Помощь с образом</li>
+                <li>Готовность — 14 дней</li>
+              </ul>
+              <div className="pricing__price">
+                <span className="pricing__amount">15 000</span>
+                <span className="pricing__currency">₽</span>
+              </div>
+              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
+            </div>
+
+            <div className="pricing__card">
+              <div className="pricing__card-header">
+                <span className="pricing__duration">ПОЛНЫЙ ДЕНЬ</span>
+                <span className="pricing__subtitle">Editorial</span>
+              </div>
+              <p className="pricing__desc">Полноценная съёмка для журнала, бренда или масштабного личного проекта</p>
+              <ul className="pricing__list">
+                <li>Неограниченно локаций</li>
+                <li>50+ фото в ретуши</li>
+                <li>Стилизация и команда</li>
+                <li>Готовность — 21 день</li>
+              </ul>
+              <div className="pricing__price">
+                <span className="pricing__amount">35 000</span>
+                <span className="pricing__currency">₽</span>
+              </div>
+              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== ПОРТФОЛИО ========== */}
       <section className="portfolio curved-top curved-top--milk" id="portfolio">
         <span className="watermark watermark--light" style={{ top: '9%', right: '-5%' }}>РАБОТЫ</span>
@@ -446,72 +512,6 @@ export default function App() {
           <a href="#book" className="btn btn-signup arrow-link reveal">
             ЗАПИСАТЬСЯ НА СЪЁМКУ <ArrowIcon />
           </a>
-        </div>
-      </section>
-
-      {/* ========== ЦЕНЫ ========== */}
-      <section className="pricing" id="pricing">
-        <div className="pricing__inner">
-          <h2 className="pricing__title line-mask">
-            <span className="line"><span className="line-inner">ЦЕНЫ</span></span>
-          </h2>
-          <div className="pricing__cards">
-            <div className="pricing__card">
-              <div className="pricing__card-header">
-                <span className="pricing__duration">1 ЧАС</span>
-                <span className="pricing__subtitle">Мини-съёмка</span>
-              </div>
-              <p className="pricing__desc">Идеально для тех, кто хочет попробовать формат и получить несколько ярких кадров</p>
-              <ul className="pricing__list">
-                <li>1 локация</li>
-                <li>10 фото в ретуши</li>
-                <li>Готовность — 7 дней</li>
-              </ul>
-              <div className="pricing__price">
-                <span className="pricing__amount">8 000</span>
-                <span className="pricing__currency">₽</span>
-              </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
-            </div>
-
-            <div className="pricing__card pricing__card--featured">
-              <div className="pricing__card-header">
-                <span className="pricing__duration">2 ЧАСА</span>
-                <span className="pricing__subtitle">Стандарт</span>
-              </div>
-              <p className="pricing__desc">Оптимальный формат для портретной съёмки, контента и личных проектов</p>
-              <ul className="pricing__list">
-                <li>До 2 локаций</li>
-                <li>25 фото в ретуши</li>
-                <li>Помощь с образом</li>
-                <li>Готовность — 14 дней</li>
-              </ul>
-              <div className="pricing__price">
-                <span className="pricing__amount">15 000</span>
-                <span className="pricing__currency">₽</span>
-              </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
-            </div>
-
-            <div className="pricing__card">
-              <div className="pricing__card-header">
-                <span className="pricing__duration">ПОЛНЫЙ ДЕНЬ</span>
-                <span className="pricing__subtitle">Editorial</span>
-              </div>
-              <p className="pricing__desc">Полноценная съёмка для журнала, бренда или масштабного личного проекта</p>
-              <ul className="pricing__list">
-                <li>Неограниченно локаций</li>
-                <li>50+ фото в ретуши</li>
-                <li>Стилизация и команда</li>
-                <li>Готовность — 21 день</li>
-              </ul>
-              <div className="pricing__price">
-                <span className="pricing__amount">35 000</span>
-                <span className="pricing__currency">₽</span>
-              </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
-            </div>
-          </div>
         </div>
       </section>
 
