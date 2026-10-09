@@ -1620,3 +1620,11 @@ a {
     font-size: 10vw !important;
   }
 }
+
+/* Surface Pro: увеличение телефона в секции Instagram */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .insta-shot {
+    transform: scale(0.9);
+    transform-origin: center center;
+  }
+}
