@@ -1631,13 +1631,14 @@ a {
   }
 }
 
-/* Surface Pro (900px - 1024px): сдвигаем текст правее, ближе к телефону */
+/* Surface Pro (900px - 1024px): сдвигаем текст правее, телефон левее */
 @media (min-width: 900px) and (max-width: 1024px) {
   .social__inner > div:first-child {
     margin-left: 20% !important;
   }
   
   .insta-shot {
-    left: 72% !important;
+    left: 68% !important;
+    transform: scale(0.95) translate(-50%, -59%) !important;
   }
 }
