@@ -1612,6 +1612,16 @@ a {
   }
 }
 
+/* Увеличение телефона на планшетах 768-1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .insta-shot, .insta__phone, .phone, .phone-mockup {
+    width: 45% !important;
+    max-width: 450px !important;
+    min-width: 300px !important;
+    transform: scale(1.25) !important;
+  }
+}
+
 /* Экраны 360px и уже: заголовок не выходит за края */
 @media (max-width: 360px) {
   .hero__name {
