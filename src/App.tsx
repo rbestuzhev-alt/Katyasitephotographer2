@@ -378,7 +378,7 @@ export default function App() {
             <div className="portfolio__card reveal">
               <img
                 className="portfolio__card-img"
-                src="https://i.postimg.cc/1XP4SyNW/772036219-17883831528613066-8413099912558788250-n.webp"
+                src="https://i.postimg.cc/90mjxp32/IMG-5067.jpg"
                 alt="Избранная работа 2"
                 loading="lazy"
               />
