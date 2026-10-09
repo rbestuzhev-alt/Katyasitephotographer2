@@ -41,10 +41,6 @@ export default function App() {
     const container = pricingCardsRef.current;
     if (!container) return;
 
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isNarrow = window.innerWidth <= 900;
-
-    // Активная (центральная) карточка
     const handleScroll = () => {
       const containerCenter = container.scrollLeft + container.offsetWidth / 2;
       const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
@@ -73,24 +69,36 @@ export default function App() {
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Мышь на узких экранах: вертикальный скролл -> медленный горизонтальный
     let wheelHandler: ((e: WheelEvent) => void) | null = null;
-    if (!isTouch && isNarrow) {
-      wheelHandler = (e: WheelEvent) => {
-        const maxScroll = container.scrollWidth - container.offsetWidth;
-        const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
-        const atEnd = container.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
 
-        if (!atStart && !atEnd) {
-          e.preventDefault();
-          container.scrollLeft += e.deltaY * 0.35;
-        }
-      };
-      container.addEventListener('wheel', wheelHandler, { passive: false });
-    }
+    const attachWheel = () => {
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isNarrow = window.innerWidth <= 900;
+
+      if (!isTouch && isNarrow && !wheelHandler) {
+        wheelHandler = (e: WheelEvent) => {
+          const maxScroll = container.scrollWidth - container.offsetWidth;
+          const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
+          const atEnd = container.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+
+          if (!atStart && !atEnd) {
+            e.preventDefault();
+            container.scrollLeft += e.deltaY * 0.35;
+          }
+        };
+        container.addEventListener('wheel', wheelHandler, { passive: false });
+      } else if ((isTouch || !isNarrow) && wheelHandler) {
+        container.removeEventListener('wheel', wheelHandler);
+        wheelHandler = null;
+      }
+    };
+
+    attachWheel();
+    window.addEventListener('resize', attachWheel);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', attachWheel);
       if (wheelHandler) container.removeEventListener('wheel', wheelHandler);
     };
   }, []);

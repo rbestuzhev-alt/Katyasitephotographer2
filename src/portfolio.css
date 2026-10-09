@@ -1138,7 +1138,6 @@ a {
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 20px;
     padding: 0 20px 20px;
@@ -1835,6 +1834,13 @@ a {
 @media (min-width: 1025px) {
   .pricing {
     padding-top: 44px !important;
+  }
+}
+
+/* Snap только для тач-устройств */
+@media (max-width: 900px) and (hover: none) and (pointer: coarse) {
+  .pricing__cards {
+    scroll-snap-type: x mandatory;
   }
 }
 
