@@ -376,7 +376,6 @@ export default function App() {
                 <span className="pricing__amount">8 000</span>
                 <span className="pricing__currency">₽</span>
               </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
             </div>
 
             <div className="pricing__card pricing__card--featured">
@@ -395,7 +394,6 @@ export default function App() {
                 <span className="pricing__amount">15 000</span>
                 <span className="pricing__currency">₽</span>
               </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
             </div>
 
             <div className="pricing__card">
@@ -414,7 +412,6 @@ export default function App() {
                 <span className="pricing__amount">35 000</span>
                 <span className="pricing__currency">₽</span>
               </div>
-              <a href="#contact" className="pricing__btn btn">ЗАПИСАТЬСЯ</a>
             </div>
           </div>
         </div>
