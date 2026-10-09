@@ -75,14 +75,32 @@ export default function App() {
 
     // Перехват вертикального скролла → горизонтальный (только мышь на узких экранах)
     let wheelHandler: ((e: WheelEvent) => void) | null = null;
+    let targetScroll = container.scrollLeft;
+    let rafId: number | null = null;
+
     if (!isTouch && isNarrow) {
+      const animate = () => {
+        const diff = targetScroll - container.scrollLeft;
+        if (Math.abs(diff) < 0.5) {
+          container.scrollLeft = targetScroll;
+          rafId = null;
+          return;
+        }
+        container.scrollLeft += diff * 0.12;
+        rafId = requestAnimationFrame(animate);
+      };
+
       wheelHandler = (e: WheelEvent) => {
-        const atStart = container.scrollLeft <= 0 && e.deltaY < 0;
-        const atEnd = container.scrollLeft + container.offsetWidth >= container.scrollWidth - 1 && e.deltaY > 0;
+        const maxScroll = container.scrollWidth - container.offsetWidth;
+        const atStart = targetScroll <= 0 && e.deltaY < 0;
+        const atEnd = targetScroll >= maxScroll - 1 && e.deltaY > 0;
 
         if (!atStart && !atEnd) {
           e.preventDefault();
-          container.scrollLeft += e.deltaY;
+          targetScroll = Math.max(0, Math.min(maxScroll, targetScroll + e.deltaY * 0.35));
+          if (rafId === null) rafId = requestAnimationFrame(animate);
+        } else {
+          targetScroll = container.scrollLeft;
         }
       };
       container.addEventListener('wheel', wheelHandler, { passive: false });
@@ -91,6 +109,7 @@ export default function App() {
     return () => {
       container.removeEventListener('scroll', handleScroll);
       if (wheelHandler) container.removeEventListener('wheel', wheelHandler);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
