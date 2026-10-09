@@ -1887,7 +1887,7 @@ a {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.35s ease;
-    animation: hintPulse 2s ease-in-out infinite;
+    animation: hintPulse 4s ease-in-out infinite;
   }
 
   .pricing__card:has(+ .pricing-card--active)::after {
@@ -1937,7 +1937,7 @@ a {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.35s ease;
-    animation: hintPulse 2s ease-in-out infinite;
+    animation: hintPulse 4s ease-in-out infinite;
   }
 
   .pricing__card:has(+ .pricing-card--active)::after {
