@@ -70,59 +70,22 @@ export default function App() {
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    const isMouseNarrow = () => {
+    // Клик по боковой карточке — плавная прокрутка к ней (только мышь + экран <= 900px)
+    const handleClick = (e: MouseEvent) => {
       const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      return !isTouch && window.innerWidth <= 900;
+      if (isTouch || window.innerWidth > 900) return;
+
+      const card = (e.target as HTMLElement).closest('.pricing__card') as HTMLElement | null;
+      if (!card || !container.contains(card)) return;
+
+      const target = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2;
+      container.scrollTo({ left: target, behavior: 'smooth' });
     };
-
-    let engaged = false; // захвачен ли скролл карточками
-
-    const wheelHandler = (e: WheelEvent) => {
-      if (!isMouseNarrow()) return;
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-
-      const rect = container.getBoundingClientRect();
-      const center = window.innerHeight / 2;
-      const inZone = rect.top <= center && rect.bottom >= center;
-
-      const maxScroll = container.scrollWidth - container.offsetWidth;
-      const atEnd = container.scrollLeft >= maxScroll - 1;
-      const atStart = container.scrollLeft <= 1;
-
-      if (e.deltaY > 0) {
-        // Скролл вниз
-        if (!engaged && inZone && !atEnd) engaged = true;
-
-        if (engaged && !atEnd) {
-          e.preventDefault();
-          container.scrollLeft = Math.min(maxScroll, container.scrollLeft + e.deltaY * 0.35);
-          if (maxScroll - container.scrollLeft < 1) container.scrollLeft = maxScroll;
-        } else {
-          // Карточки прокручены до конца — отпускаем страницу
-          if (engaged) container.scrollLeft = maxScroll;
-          engaged = false;
-        }
-      } else {
-        // Скролл вверх
-        if (!engaged && inZone && !atStart) engaged = true;
-
-        if (engaged && !atStart) {
-          e.preventDefault();
-          container.scrollLeft = Math.max(0, container.scrollLeft + e.deltaY * 0.35);
-          if (container.scrollLeft < 1) container.scrollLeft = 0;
-        } else {
-          // Карточки у начала — отпускаем страницу вверх
-          if (engaged) container.scrollLeft = 0;
-          engaged = false;
-        }
-      }
-    };
-
-    window.addEventListener('wheel', wheelHandler, { passive: false });
+    container.addEventListener('click', handleClick);
 
     return () => {
       container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('wheel', wheelHandler);
+      container.removeEventListener('click', handleClick);
     };
   }, []);
 

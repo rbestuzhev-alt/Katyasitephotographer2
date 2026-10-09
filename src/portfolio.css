@@ -1855,4 +1855,15 @@ a {
   }
 }
 
+/* Мышиные экраны уже 900px: убираем горизонтальную прокрутку, навигация кликами */
+@media (max-width: 900px) and (hover: hover) and (pointer: fine) {
+  .pricing__cards {
+    overflow-x: hidden;
+  }
+
+  .pricing__card {
+    cursor: pointer;
+  }
+}
+
 
