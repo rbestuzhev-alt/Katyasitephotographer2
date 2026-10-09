@@ -1027,18 +1027,9 @@ a {
   transition: border-color 0.4s ease, transform 0.4s ease;
 }
 
-.pricing__card:hover {
-  border-color: rgba(239, 235, 228, 0.25);
-  transform: translateY(-4px);
-}
-
 .pricing__card--featured {
   background: rgba(192, 41, 26, 0.08);
   border-color: rgba(192, 41, 26, 0.3);
-}
-
-.pricing__card--featured:hover {
-  border-color: rgba(192, 41, 26, 0.5);
 }
 
 .pricing__card-header {
