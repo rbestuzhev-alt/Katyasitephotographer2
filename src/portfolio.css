@@ -1697,14 +1697,14 @@ a {
   .social {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     position: relative;
   }
 
   .social__inner {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   
   .social__watermark-wrapper {
