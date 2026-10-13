@@ -424,7 +424,7 @@ export default function App() {
 
             <div className="pricing__card pricing__card--featured">
               <div className="pricing__card-header">
-                <span className="pricing__subtitle">love story</span>
+                <span className="pricing__subtitle">Love story</span>
               </div>
               <p className="pricing__desc">Я просто даю вам время побыть вдвоем. Без суеты, без сценария, без лишних глаз.</p>
               <ul className="pricing__list">
