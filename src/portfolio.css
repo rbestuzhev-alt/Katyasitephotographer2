@@ -1715,7 +1715,7 @@ a {
     min-height: 0 !important;
     max-height: none !important;
     aspect-ratio: auto !important;
-    margin-bottom: 0 !important;
+    margin-bottom: -60px !important;
     padding-bottom: 0 !important;
     position: relative !important;
     top: auto !important;
