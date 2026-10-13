@@ -1054,9 +1054,12 @@ a {
 }
 
 .pricing__desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--smoke);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 32px;
   flex-grow: 1;
 }
