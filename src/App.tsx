@@ -424,19 +424,18 @@ export default function App() {
 
             <div className="pricing__card pricing__card--featured">
               <div className="pricing__card-header">
-                <span className="pricing__duration">2 ЧАСА</span>
-                <span className="pricing__subtitle">Стандарт</span>
+                <span className="pricing__subtitle">love story</span>
               </div>
-              <p className="pricing__desc">Оптимальный формат для портретной съёмки, контента и личных проектов</p>
+              <p className="pricing__desc">Я просто даю вам время побыть вдвоем. Без суеты, без сценария, без лишних глаз.</p>
               <ul className="pricing__list">
-                <li>До 2 локаций</li>
-                <li>25 фото в ретуши</li>
-                <li>Помощь с образом</li>
-                <li>Готовность — 14 дней</li>
+                <li>Консультация и знакомство — я хочу знать вашу историю</li>
+                <li>Подбор места и времени под ваш ритм</li>
+                <li>Съёмка в комфортном темпе, без спешки</li>
+                <li>Обработка фотографий</li>
               </ul>
               <div className="pricing__price">
-                <span className="pricing__amount">15 000</span>
-                <span className="pricing__currency">₽</span>
+                <span className="pricing__amount">4500</span>
+                <span className="pricing__currency">₽/час</span>
               </div>
             </div>
 
