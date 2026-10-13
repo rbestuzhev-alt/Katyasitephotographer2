@@ -404,18 +404,21 @@ export default function App() {
           <div className="pricing__cards" ref={pricingCardsRef}>
             <div className="pricing__card">
               <div className="pricing__card-header">
-                <span className="pricing__duration">1 ЧАС</span>
-                <span className="pricing__subtitle">Мини-съёмка</span>
+                <span className="pricing__subtitle">Портретная съёмка</span>
               </div>
-              <p className="pricing__desc">Идеально для тех, кто хочет попробовать формат и получить несколько ярких кадров</p>
+              <p className="pricing__desc">
+                Это про тебя.
+                <br />
+                Про твой взгляд, твои эмоции, твою радость.
+              </p>
               <ul className="pricing__list">
-                <li>1 локация</li>
-                <li>10 фото в ретуши</li>
-                <li>Готовность — 7 дней</li>
+                <li>Консультация перед съёмкой</li>
+                <li>Подбор локации, помощь с образом</li>
+                <li>Обработка фотографий (от 40 кадров)</li>
               </ul>
               <div className="pricing__price">
-                <span className="pricing__amount">8 000</span>
-                <span className="pricing__currency">₽</span>
+                <span className="pricing__amount">4 000</span>
+                <span className="pricing__currency">₽ /час</span>
               </div>
             </div>
 
