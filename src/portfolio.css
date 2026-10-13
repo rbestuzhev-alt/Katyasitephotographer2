@@ -1160,7 +1160,7 @@ a {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 630px) {
   .pricing {
     padding-left: 20px;
     padding-right: 20px;
@@ -1282,8 +1282,8 @@ a {
   }
 }
 
-/* Планшеты 481px–1024px: текст слева, телефон под буквой R */
-@media (min-width: 481px) and (max-width: 1024px) {
+/* Планшеты 631px–1024px: текст слева, телефон под буквой R */
+@media (min-width: 631px) and (max-width: 1024px) {
   /* Текст занимает левую половину, перенос только по словам */
   .social__inner > div:first-child {
     max-width: 55% !important;
