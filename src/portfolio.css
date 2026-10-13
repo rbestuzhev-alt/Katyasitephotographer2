@@ -1698,8 +1698,16 @@ a {
     padding-bottom: 40px;
   }
   
-  .social__inner {
+  .social,
+  .social__inner,
+  .section,
+  .section__inner {
     overflow: visible !important;
+  }
+  
+  .social__watermark {
+    overflow: hidden;
+    position: absolute;
   }
   
   .insta-shot {
