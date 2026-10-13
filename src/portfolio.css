@@ -1699,6 +1699,7 @@ a {
     margin-bottom: 0 !important;
     overflow: hidden;
     position: relative;
+    z-index: 10;
   }
 
   .social__inner {
