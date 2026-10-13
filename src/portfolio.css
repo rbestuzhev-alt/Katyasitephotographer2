@@ -1702,7 +1702,9 @@ a {
   }
 
   .social__inner {
-    padding-bottom: 0 !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    padding-bottom: 6vw !important;
     margin-bottom: 0 !important;
     overflow: visible !important;
   }
@@ -1712,6 +1714,8 @@ a {
   }
   
   .insta-shot {
+    margin-top: 0 !important;
+    align-self: flex-start !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
