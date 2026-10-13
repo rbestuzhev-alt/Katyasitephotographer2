@@ -1765,7 +1765,7 @@ a {
   .newsletter::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -3px;
     left: -10%;
     right: auto;
     width: 120%;
