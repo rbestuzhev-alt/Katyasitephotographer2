@@ -1771,7 +1771,7 @@ a {
     width: 120%;
     height: 80px;
     background: var(--milk);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
     z-index: 1;
   }
 
