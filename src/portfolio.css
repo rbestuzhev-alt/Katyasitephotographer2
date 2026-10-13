@@ -1268,7 +1268,7 @@ a {
 }
 
 /* Мобильные планшеты: телефон под абзацем "СЪЁМКА" */
-@media (max-width: 1024px) {
+@media (min-width: 651px) and (max-width: 1024px) {
   .insta-shot {
     left: 80%;
   }
@@ -1664,7 +1664,7 @@ a {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 650px) {
   .portfolio__grid {
     grid-template-columns: 1fr;
     max-width: 400px;
@@ -1699,11 +1699,15 @@ a {
   }
   
   .insta-shot {
-    position: static;
-    transform: none;
-    width: min(72vw, 340px);
-    height: auto;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    transform: none !important;
     margin: 2rem auto 0;
+    max-width: 240px;
+    width: min(72vw, 240px);
+    height: auto;
   }
   .hero__tagline {
     white-space: normal;
