@@ -1697,9 +1697,8 @@ a {
   .social {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-    overflow: hidden;
+    overflow: visible !important;
     position: relative;
-    z-index: 10;
   }
 
   .social__inner {
@@ -1719,7 +1718,7 @@ a {
     margin-bottom: -60px !important;
     padding-bottom: 0 !important;
     position: relative !important;
-    z-index: 100 !important;
+    z-index: 10 !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
@@ -1747,6 +1746,11 @@ a {
 
   .services__steps {
     gap: 32px;
+  }
+
+  #services {
+    position: relative;
+    z-index: 1;
   }
 
   .newsletter {
