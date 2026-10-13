@@ -414,11 +414,11 @@ export default function App() {
               <ul className="pricing__list">
                 <li>Консультация перед съёмкой</li>
                 <li>Подбор локации, помощь с образом</li>
-                <li>Обработка фотографий (от 40 кадров)</li>
+                <li>Обработка (от 40 кадров)</li>
               </ul>
               <div className="pricing__price">
                 <span className="pricing__amount">4 000</span>
-                <span className="pricing__currency">₽ /час</span>
+                <span className="pricing__currency">₽/час</span>
               </div>
             </div>
 
