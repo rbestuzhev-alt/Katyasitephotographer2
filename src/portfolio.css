@@ -1707,12 +1707,15 @@ a {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
     overflow: visible !important;
+    clip-path: none !important;
     position: relative;
   }
 
   .social__inner {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
+    overflow: visible !important;
+    clip-path: none !important;
   }
   
   .social__watermark-wrapper {
@@ -1724,7 +1727,8 @@ a {
     min-height: 0 !important;
     max-height: none !important;
     aspect-ratio: auto !important;
-    margin-bottom: -80px !important;
+    margin-bottom: -100px !important;
+    margin-top: 40px;
     padding-bottom: 0 !important;
     position: relative !important;
     z-index: 100 !important;
@@ -1779,6 +1783,18 @@ a {
   .newsletter {
     position: relative;
     z-index: 1;
+    margin-top: 0 !important;
+  }
+  
+  .social::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: inherit;
+    z-index: -1;
   }
 
   .footer__bottom-nav {
