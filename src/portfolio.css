@@ -1769,7 +1769,7 @@ a {
     left: -10%;
     right: auto;
     width: 120%;
-    height: 80px;
+    height: 40px;
     background: var(--milk);
     border-radius: 0 0 50% 50% / 0 0 100% 100%;
     z-index: 1;
