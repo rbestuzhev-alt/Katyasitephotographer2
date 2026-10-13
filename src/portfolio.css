@@ -1693,29 +1693,18 @@ a {
     padding-right: 20px;
   }
   
-  /* Снимаем все ограничения на обрезку для всей цепочки родителей */
-  .social,
-  .social__inner,
-  #root,
-  body {
-    overflow: visible !important;
-    clip-path: none !important;
-  }
-  
   /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
   .social {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-    overflow: visible !important;
-    clip-path: none !important;
+    overflow: hidden !important;
     position: relative;
   }
 
   .social__inner {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-    overflow: visible !important;
-    clip-path: none !important;
+    overflow: hidden !important;
   }
   
   .social__watermark-wrapper {
@@ -1727,11 +1716,10 @@ a {
     min-height: 0 !important;
     max-height: none !important;
     aspect-ratio: auto !important;
-    margin-bottom: -100px !important;
-    margin-top: 40px;
+    margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     position: relative !important;
-    z-index: 100 !important;
+    z-index: auto !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
@@ -1768,33 +1756,8 @@ a {
     margin-top: 0 !important;
   }
 
-  #services::before,
-  .services::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: inherit;
-    z-index: -1;
-  }
-
   .newsletter {
     position: relative;
-    z-index: 1;
-    margin-top: 0 !important;
-  }
-  
-  .social::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: inherit;
-    z-index: -1;
   }
 
   .footer__bottom-nav {
