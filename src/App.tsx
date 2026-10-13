@@ -263,14 +263,16 @@ export default function App() {
 
     /* ---------- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ ---------- */
     const privacyModal = document.getElementById('privacy-modal');
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
     const openPrivacy = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const isPrivacyLink = target.closest('.privacy-link');
       if (isPrivacyLink && privacyModal) {
         e.preventDefault();
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.paddingRight = scrollbarWidth + 'px';
+        if (scrollbarWidth > 0) {
+          document.body.style.paddingRight = scrollbarWidth + 'px';
+        }
         document.body.style.overflow = 'hidden';
         privacyModal.classList.add('active');
       }
