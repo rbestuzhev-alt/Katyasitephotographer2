@@ -261,6 +261,40 @@ export default function App() {
     document.addEventListener('click', handleLightboxClose);
     document.addEventListener('keydown', handleEscape);
 
+    /* ---------- МОДАЛЬНОЕ ОКНО ПОЛИТИКИ ---------- */
+    const privacyModal = document.getElementById('privacy-modal');
+
+    const openPrivacy = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isPrivacyLink = target.closest('.privacy-link');
+      if (isPrivacyLink && privacyModal) {
+        e.preventDefault();
+        privacyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    const closePrivacy = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isCloseBtn = target.closest('.privacy-modal__close');
+      const isBackground = target === privacyModal;
+      if ((isCloseBtn || isBackground) && privacyModal) {
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+
+    const closePrivacyByEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && privacyModal?.classList.contains('active')) {
+        privacyModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+
+    document.addEventListener('click', openPrivacy);
+    document.addEventListener('click', closePrivacy);
+    document.addEventListener('keydown', closePrivacyByEscape);
+
     /* ---------- TOUCH-LIT для кнопок на тач-устройствах ---------- */
     let touchLitObserver: IntersectionObserver | null = null;
     if (!prefersReducedMotion && window.matchMedia('(hover: none), (pointer: coarse)').matches) {
@@ -285,6 +319,9 @@ export default function App() {
       document.removeEventListener('click', handleLightboxOpen);
       document.removeEventListener('click', handleLightboxClose);
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('click', openPrivacy);
+      document.removeEventListener('click', closePrivacy);
+      document.removeEventListener('keydown', closePrivacyByEscape);
     };
   }, []);
 
@@ -630,6 +667,10 @@ export default function App() {
           <a href="https://t.me/pro100katerinkaa" target="_blank" rel="noopener noreferrer" className="btn btn--outline arrow-link">
             СВЯЗАТЬСЯ <ArrowIcon />
           </a>
+          <label className="privacy-consent">
+            <input type="checkbox" required />
+            <span>Нажимая кнопку, я соглашаюсь с <a href="#" className="privacy-link">политикой конфиденциальности</a></span>
+          </label>
         </div>
 
         <div className="footer__bottom">
@@ -669,6 +710,22 @@ export default function App() {
       <div id="portfolio-lightbox" className="lightbox">
         <button className="lightbox-close" aria-label="Закрыть">&times;</button>
         <img src="" alt="Увеличенное изображение" className="lightbox-img" />
+      </div>
+
+      <div id="privacy-modal" className="privacy-modal">
+        <button className="privacy-modal__close" aria-label="Закрыть">&times;</button>
+        <div className="privacy-modal__content">
+          <h2 className="privacy-modal__title">
+            <em>политика</em> конфиденциальности
+          </h2>
+          <div className="privacy-modal__text">
+            <p><strong>01 — Данные.</strong> Я собираю только то, что вы оставляете сами: имя и контакт для связи. Технические данные (IP, тип устройства) собирает Яндекс.Метрика для анализа посещаемости.</p>
+            <p><strong>02 — Цели.</strong> Связаться с вами по вопросам съёмки и улучшить работу сайта. Данные не передаются третьим лицам и не используются для рекламы.</p>
+            <p><strong>03 — Хранение.</strong> Данные хранятся до момента отзыва согласия или удаления по вашему запросу, но не более 3 лет.</p>
+            <p><strong>04 — Ваши права.</strong> Вы можете в любой момент отозвать согласие или запросить удаление данных — напишите в Telegram <em>@pro100katerinkaa</em>.</p>
+            <p><strong>05 — Cookies.</strong> Сайт использует cookies Яндекс.Метрики. Отключить их можно в настройках браузера.</p>
+          </div>
+        </div>
       </div>
     </>
   );
