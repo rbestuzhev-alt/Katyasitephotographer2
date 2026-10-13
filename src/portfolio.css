@@ -1756,24 +1756,21 @@ a {
     margin-top: 0 !important;
   }
 
-  /* Сам блок newsletter должен иметь overflow: hidden */
   .newsletter {
     position: relative;
-    overflow: hidden;
-    padding-top: 0 !important;
+    overflow: visible;
+    margin-top: 0;
   }
 
-  /* Арка через border-radius (вдавленная дуга) */
   .newsletter::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -60px;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 120px;
     background: var(--milk);
-    border-bottom-left-radius: 50% 100%;
-    border-bottom-right-radius: 50% 100%;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     z-index: 1;
   }
 
