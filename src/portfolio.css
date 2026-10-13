@@ -1696,6 +1696,7 @@ a {
   /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
   .social {
     padding-bottom: 40px;
+    overflow: visible !important;
   }
   
   .social,
@@ -1705,9 +1706,8 @@ a {
     overflow: visible !important;
   }
   
-  .social__watermark {
+  .social__watermark-wrapper {
     overflow: hidden;
-    position: absolute;
   }
   
   .insta-shot {
@@ -1719,6 +1719,7 @@ a {
     width: 75%;
     max-width: 320px;
     margin: 40px auto 0;
+    overflow: visible !important;
   }
   .hero__tagline {
     white-space: normal;
