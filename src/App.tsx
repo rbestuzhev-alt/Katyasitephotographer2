@@ -580,7 +580,7 @@ export default function App() {
       </section>
 
       {/* ========== РАССЫЛКА ========== */}
-      <section className="newsletter" id="contact">
+      <section className="newsletter curved-top curved-top--milk" id="contact">
         <div className="newsletter__bg">
           <img
             src="https://i.postimg.cc/7PzNYb8M/Being-a-woman.jpg"

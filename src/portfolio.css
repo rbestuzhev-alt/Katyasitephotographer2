@@ -1350,6 +1350,7 @@ a {
   max-width: 640px;
   text-align: center;
   color: var(--milk);
+  padding-top: 60px;
 }
 
 .newsletter__inner .btn {
