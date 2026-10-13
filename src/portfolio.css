@@ -1719,6 +1719,7 @@ a {
     margin-bottom: -60px !important;
     padding-bottom: 0 !important;
     position: relative !important;
+    z-index: 100 !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
@@ -1746,6 +1747,11 @@ a {
 
   .services__steps {
     gap: 32px;
+  }
+
+  .newsletter {
+    position: relative;
+    z-index: 1;
   }
 
   .footer__bottom-nav {
