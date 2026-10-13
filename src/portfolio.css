@@ -1719,11 +1719,10 @@ a {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     position: relative !important;
-    z-index: 10 !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
-    transform: translateY(60px) !important;
+    transform: none !important;
     width: 80%;
     max-width: 340px;
     margin: 0 auto;
@@ -1755,14 +1754,8 @@ a {
     z-index: 1 !important;
     margin-top: 0 !important;
   }
-
-  .newsletter {
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer__bottom-nav {
-    flex-wrap: wrap;
+  
+  .footer__bottom-nav {    flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
   }
