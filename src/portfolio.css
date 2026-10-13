@@ -1696,21 +1696,14 @@ a {
   /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
   .social {
     padding-bottom: 0 !important;
-    margin-bottom: -120px !important;
+    margin-bottom: 0 !important;
+    overflow: hidden;
     position: relative;
-    z-index: 2;
-    overflow: visible !important;
   }
 
   .social__inner {
     padding-bottom: 0 !important;
-  }
-  
-  .social,
-  .social__inner,
-  .section,
-  .section__inner {
-    overflow: visible !important;
+    margin-bottom: 0 !important;
   }
   
   .social__watermark-wrapper {
@@ -1718,6 +1711,12 @@ a {
   }
   
   .insta-shot {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
     position: relative !important;
     top: auto !important;
     right: auto !important;
@@ -1725,9 +1724,7 @@ a {
     transform: none !important;
     width: 80%;
     max-width: 340px;
-    margin: 40px auto 0;
-    margin-bottom: 0 !important;
-    overflow: visible !important;
+    margin: 0 auto;
   }
   
   .insta-shot img {
@@ -1735,7 +1732,8 @@ a {
     height: auto;
     object-fit: contain;
     display: block;
-    margin-bottom: 0 !important;
+    margin: 0;
+    padding: 0;
   }
   .hero__tagline {
     white-space: normal;
