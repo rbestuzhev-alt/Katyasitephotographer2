@@ -667,10 +667,7 @@ export default function App() {
           <a href="https://t.me/pro100katerinkaa" target="_blank" rel="noopener noreferrer" className="btn btn--outline arrow-link">
             СВЯЗАТЬСЯ <ArrowIcon />
           </a>
-          <label className="privacy-consent">
-            <input type="checkbox" required />
-            <span>Нажимая кнопку, я соглашаюсь с <a href="#" className="privacy-link">политикой конфиденциальности</a></span>
-          </label>
+          <span className="privacy-consent">Нажимая кнопку, вы соглашаетесь с <a href="#" className="privacy-link">политикой конфиденциальности</a></span>
         </div>
 
         <div className="footer__bottom">
