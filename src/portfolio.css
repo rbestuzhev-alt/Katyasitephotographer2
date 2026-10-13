@@ -1702,7 +1702,7 @@ a {
   }
 
   .social__inner {
-    padding-bottom: 0 !important;
+    padding-bottom: 5vw;
     margin-bottom: 0 !important;
     overflow: visible !important;
   }
