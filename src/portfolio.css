@@ -1696,10 +1696,14 @@ a {
   /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
   .social {
     padding-bottom: 0 !important;
-    margin-bottom: -60px;
+    margin-bottom: -120px !important;
     position: relative;
     z-index: 2;
     overflow: visible !important;
+  }
+
+  .social__inner {
+    padding-bottom: 0 !important;
   }
   
   .social,
@@ -1722,6 +1726,7 @@ a {
     width: 80%;
     max-width: 340px;
     margin: 40px auto 0;
+    margin-bottom: 0 !important;
     overflow: visible !important;
   }
   
@@ -1730,6 +1735,7 @@ a {
     height: auto;
     object-fit: contain;
     display: block;
+    margin-bottom: 0 !important;
   }
   .hero__tagline {
     white-space: normal;
