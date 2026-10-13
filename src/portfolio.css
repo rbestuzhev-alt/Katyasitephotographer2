@@ -1765,10 +1765,11 @@ a {
   .newsletter::before {
     content: '';
     position: absolute;
-    top: -60px;
-    left: 0;
-    right: 0;
-    height: 120px;
+    top: 0;
+    left: -10%;
+    right: auto;
+    width: 120%;
+    height: 80px;
     background: var(--milk);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     z-index: 1;
