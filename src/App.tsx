@@ -451,7 +451,7 @@ export default function App() {
                 <li>Съёмка и обработка фотографий</li>
               </ul>
               <div className="pricing__price">
-                <span className="pricing__amount">Договорная</span>
+                <span className="pricing__amount pricing__amount--text">Договорная</span>
                 <span className="pricing__currency">оплата</span>
               </div>
             </div>
