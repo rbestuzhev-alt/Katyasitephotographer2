@@ -1905,6 +1905,10 @@ a {
   }
 }
 
+.pricing__subtitle--latin {
+  -webkit-text-stroke: 0.6px currentColor;
+}
+
 .pricing__amount--text {
   font-size: clamp(28px, 3vw, 36px);
 }
