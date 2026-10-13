@@ -461,7 +461,7 @@ export default function App() {
 
       {/* ========== ПОРТФОЛИО ========== */}
       <section className="portfolio curved-top curved-top--milk" id="portfolio">
-        <span className="watermark watermark--light" style={{ top: '9%', right: '-5%' }}>РАБОТЫ</span>
+        <span className="watermark watermark--light" style={{ top: '9%', left: '50%', transform: 'translateX(-50%)' }}>РАБОТЫ</span>
 
         <div className="portfolio__inner">
           <h2 className="portfolio__title reveal">ИЗБРАННЫЕ РАБОТЫ</h2>
