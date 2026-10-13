@@ -443,7 +443,7 @@ export default function App() {
               <div className="pricing__card-header">
                 <span className="pricing__subtitle">Контент съёмка</span>
               </div>
-              <p className="pricing__desc">Творческие съемки, съемка мероприятий в том числе семейных праздников.</p>
+              <p className="pricing__desc">Творческие съемки, съемка мероприятий, семейных праздников.</p>
               <ul className="pricing__list">
                 <li>Консультация перед съёмкой</li>
                 <li>Помощь с выбором образов</li>
