@@ -441,19 +441,18 @@ export default function App() {
 
             <div className="pricing__card">
               <div className="pricing__card-header">
-                <span className="pricing__duration">ПОЛНЫЙ ДЕНЬ</span>
-                <span className="pricing__subtitle">Editorial</span>
+                <span className="pricing__subtitle">КОНТЕНТ СЪЕМКА</span>
               </div>
-              <p className="pricing__desc">Полноценная съёмка для журнала, бренда или масштабного личного проекта</p>
+              <p className="pricing__desc">Творческие съемки, съемка мероприятий в том числе семейных праздников.</p>
               <ul className="pricing__list">
-                <li>Неограниченно локаций</li>
-                <li>50+ фото в ретуши</li>
-                <li>Стилизация и команда</li>
-                <li>Готовность — 21 день</li>
+                <li>Консультация перед съёмкой</li>
+                <li>Помощь с выбором образов</li>
+                <li>Подбор локации или студии</li>
+                <li>Съёмка и обработка фотографий</li>
               </ul>
               <div className="pricing__price">
-                <span className="pricing__amount">35 000</span>
-                <span className="pricing__currency">₽</span>
+                <span className="pricing__amount">Договорная</span>
+                <span className="pricing__currency">оплата</span>
               </div>
             </div>
           </div>
