@@ -203,6 +203,7 @@ body {
   color: var(--black);
   background: var(--black);
   overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 /* Плёночное зерно */
