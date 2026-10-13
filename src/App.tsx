@@ -269,8 +269,10 @@ export default function App() {
       const isPrivacyLink = target.closest('.privacy-link');
       if (isPrivacyLink && privacyModal) {
         e.preventDefault();
-        privacyModal.classList.add('active');
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.paddingRight = scrollbarWidth + 'px';
         document.body.style.overflow = 'hidden';
+        privacyModal.classList.add('active');
       }
     };
 
@@ -280,6 +282,7 @@ export default function App() {
       const isBackground = target === privacyModal;
       if ((isCloseBtn || isBackground) && privacyModal) {
         privacyModal.classList.remove('active');
+        document.body.style.paddingRight = '';
         document.body.style.overflow = '';
       }
     };
@@ -287,6 +290,7 @@ export default function App() {
     const closePrivacyByEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && privacyModal?.classList.contains('active')) {
         privacyModal.classList.remove('active');
+        document.body.style.paddingRight = '';
         document.body.style.overflow = '';
       }
     };
