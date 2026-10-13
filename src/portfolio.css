@@ -1716,10 +1716,17 @@ a {
     right: auto !important;
     left: auto !important;
     transform: none !important;
-    width: 75%;
-    max-width: 320px;
+    width: 80%;
+    max-width: 340px;
     margin: 40px auto 0;
     overflow: visible !important;
+  }
+  
+  .insta-shot img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
   .hero__tagline {
     white-space: normal;
