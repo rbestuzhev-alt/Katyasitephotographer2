@@ -36,56 +36,132 @@ const Preloader = () => {
 export default function App() {
 
   const pricingCardsRef = useRef<HTMLDivElement>(null);
+  const pricingProgressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = pricingCardsRef.current;
+    const bar = pricingProgressRef.current;
     if (!container) return;
+
+    const DURATION = 5000; // мс на одну карточку
+    let progress = 0;
+    let paused = false;
+    let inView = false;
+    let rafId: number | null = null;
+    let lastTime: number | null = null;
+
+    const getCards = () => Array.from(container.querySelectorAll('.pricing__card')) as HTMLElement[];
+
+    const getCurrentIndex = () => {
+      const center = container.scrollLeft + container.offsetWidth / 2;
+      let idx = 0;
+      let min = Infinity;
+      getCards().forEach((c, i) => {
+        const d = Math.abs(center - (c.offsetLeft + c.offsetWidth / 2));
+        if (d < min) { min = d; idx = i; }
+      });
+      return idx;
+    };
+
+    const goToIndex = (i: number) => {
+      const cards = getCards();
+      if (!cards.length) return;
+      const idx = (i + cards.length) % cards.length;
+      const card = cards[idx];
+      container.scrollTo({
+        left: card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2,
+        behavior: 'smooth',
+      });
+    };
 
     // Активная (центральная) карточка
     const handleScroll = () => {
-      const containerCenter = container.scrollLeft + container.offsetWidth / 2;
-      const cards = Array.from(container.querySelectorAll<HTMLElement>('.pricing__card'));
-      
-      cards.forEach((card) => {
+      const center = container.scrollLeft + container.offsetWidth / 2;
+      let closest: HTMLElement | null = null;
+      let min = Infinity;
+      getCards().forEach((card) => {
+        const d = Math.abs(center - (card.offsetLeft + card.offsetWidth / 2));
+        if (d < min) { min = d; closest = card; }
         card.classList.remove('pricing-card--active');
       });
-
-      let closest: HTMLElement | undefined;
-      let minDistance = Infinity;
-
-      cards.forEach((card) => {
-        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closest = card;
-        }
-      });
-
-      if (closest) {
-        closest.classList.add('pricing-card--active');
-      }
+      if (closest) (closest as HTMLElement).classList.add('pricing-card--active');
     };
-
     container.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    // Клик по боковой карточке — плавная прокрутка к ней (только мышь + экран <= 900px)
+    const setBar = () => {
+      if (bar) bar.style.transform = `scaleX(${progress})`;
+    };
+
+    // Цикл автопрокрутки + прогресс-бар
+    const tick = (time: number) => {
+      if (lastTime == null) lastTime = time;
+      const dt = time - lastTime;
+      lastTime = time;
+
+      const enabled = window.innerWidth <= 740;
+      if (enabled && !paused && inView && !document.hidden) {
+        progress += dt / DURATION;
+        if (progress >= 1) {
+          progress = 0;
+          goToIndex(getCurrentIndex() + 1);
+        }
+        setBar();
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    const pause = () => { paused = true; };
+    const resumeReset = () => { paused = false; progress = 0; setBar(); };
+
+    // Тач: пауза на время свайпа, сброс после
+    const onTouchStart = () => { paused = true; };
+    const onTouchEnd = () => { resumeReset(); };
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchend', onTouchEnd);
+    container.addEventListener('touchcancel', onTouchEnd);
+
+    // Мышь: пауза при наведении, сброс при уходе курсора
+    const onEnter = (e: PointerEvent) => { if (e.pointerType === 'mouse') pause(); };
+    const onLeave = (e: PointerEvent) => { if (e.pointerType === 'mouse') resumeReset(); };
+    container.addEventListener('pointerenter', onEnter);
+    container.addEventListener('pointerleave', onLeave);
+
+    // Клик по боковой карточке (мышь, <=740px) — прокрутка к ней и сброс таймера
     const handleClick = (e: MouseEvent) => {
       const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
       if (isTouch || window.innerWidth > 740) return;
-
       const card = (e.target as HTMLElement).closest('.pricing__card') as HTMLElement | null;
       if (!card || !container.contains(card)) return;
-
-      const target = card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2;
-      container.scrollTo({ left: target, behavior: 'smooth' });
+      container.scrollTo({
+        left: card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2,
+        behavior: 'smooth',
+      });
+      resumeReset();
     };
     container.addEventListener('click', handleClick);
 
+    // Автопрокрутка только когда секция в кадре
+    const io = new IntersectionObserver(
+      (entries) => {
+        inView = entries[0].isIntersecting;
+        if (inView) { progress = 0; setBar(); }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(container);
+
     return () => {
       container.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchend', onTouchEnd);
+      container.removeEventListener('touchcancel', onTouchEnd);
+      container.removeEventListener('pointerenter', onEnter);
+      container.removeEventListener('pointerleave', onLeave);
       container.removeEventListener('click', handleClick);
+      io.disconnect();
+      if (rafId != null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -466,6 +542,9 @@ export default function App() {
                 <span className="pricing__currency">₽</span>
               </div>
             </div>
+          </div>
+          <div className="pricing__progress">
+            <div className="pricing__progress-bar" ref={pricingProgressRef}></div>
           </div>
         </div>
       </section>
