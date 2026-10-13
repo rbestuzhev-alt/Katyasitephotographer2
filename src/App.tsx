@@ -434,7 +434,7 @@ export default function App() {
                 <li>Обработка фотографий</li>
               </ul>
               <div className="pricing__price">
-                <span className="pricing__amount">4500</span>
+                <span className="pricing__amount">4 500</span>
                 <span className="pricing__currency">₽/час</span>
               </div>
             </div>
