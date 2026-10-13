@@ -1719,11 +1719,11 @@ a {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     position: relative !important;
-    z-index: auto !important;
+    z-index: 10 !important;
     top: auto !important;
     right: auto !important;
     left: auto !important;
-    transform: none !important;
+    transform: translateY(60px) !important;
     width: 80%;
     max-width: 340px;
     margin: 0 auto;
@@ -1758,6 +1758,7 @@ a {
 
   .newsletter {
     position: relative;
+    z-index: 1;
   }
 
   .footer__bottom-nav {
