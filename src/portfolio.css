@@ -1695,7 +1695,10 @@ a {
   
   /* Уменьшаем нижний отступ секции INSTAGRAM на мобильных */
   .social {
-    padding-bottom: 40px;
+    padding-bottom: 0 !important;
+    margin-bottom: -60px;
+    position: relative;
+    z-index: 2;
     overflow: visible !important;
   }
   
