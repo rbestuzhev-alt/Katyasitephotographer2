@@ -1755,6 +1755,32 @@ a {
     z-index: 1 !important;
     margin-top: 0 !important;
   }
+
+  /* Подготовь блок рассылки и добавь отступ под арку */
+  .newsletter {
+    position: relative;
+    padding-top: 80px !important;
+  }
+
+  /* Нарисуй саму арку сверху блока рассылки */
+  .newsletter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: var(--milk);
+    clip-path: ellipse(150% 100% at 50% 0);
+    z-index: 1;
+  }
+
+  /* Подними контент и фон рассылки над аркой */
+  .newsletter__inner,
+  .newsletter__bg {
+    position: relative;
+    z-index: 2;
+  }
   
   .footer__bottom-nav {    flex-wrap: wrap;
     justify-content: center;
