@@ -1906,7 +1906,7 @@ a {
 }
 
 .latin-bold {
-  -webkit-text-stroke: 2px currentColor;
+  font-weight: 700;
 }
 
 .pricing__subtitle--latin {
