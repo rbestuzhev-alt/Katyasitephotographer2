@@ -1906,7 +1906,7 @@ a {
 }
 
 .pricing__subtitle--latin {
-  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-stroke: 2px currentColor;
 }
 
 .pricing__amount--text {
