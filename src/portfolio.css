@@ -2287,6 +2287,6 @@ a {
 @media (min-width: 2171px) {
   .insta-shot {
     right: auto !important;
-    left: calc(50vw + 400px) !important; /* Фиксированная позиция от левого края */
+    left: calc(50vw + 350px) !important; /* Фиксированная позиция от левого края */
   }
 }
