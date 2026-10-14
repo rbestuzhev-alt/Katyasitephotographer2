@@ -1016,9 +1016,17 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Убедись, что у родителей нет overflow: hidden */
+.pricing__inner,
+.pricing {
   overflow: visible !important;
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
 }
 
 .pricing__card {
