@@ -681,17 +681,19 @@ export default function App() {
       {/* ========== ПОДВАЛ ========== */}
       <footer className="footer curved-top curved-top--black">
         <div className="marquee">
-          <div className="marquee__track">
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-            <span className="marquee__text">СОЗДАВАТЬ —</span>
-          </div>
-        </div>
+        <div className="marquee__track">
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+          <span className="marquee__text">СОЗДАВАТЬ —</span>
+        </div>        </div>
 
         <div className="footer__cta" id="book">
           <h2 className="footer__cta-title">ГОТОВЫ ЗАПИСАТЬСЯ?</h2>
