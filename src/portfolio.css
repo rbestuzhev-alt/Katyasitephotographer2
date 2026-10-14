@@ -1830,24 +1830,7 @@ a {
   transform: translateY(10px) !important;
 }
 
-/* ============================================
-   ОТКЛЮЧАЕМ АНИМАЦИЮ УВЕЛИЧЕНИЯ КАРТОЧЕК НА ТАЧ-УСТРОЙСТВАХ
-   ============================================ */
-.is-touch .pricing-card--active {
-  transform: none !important;
-  scale: 1 !important;
-  width: auto !important;
-  height: auto !important;
-  padding: inherit !important;
-  margin: inherit !important;
-  box-shadow: none !important;
-  z-index: 1 !important;
-  transition: none !important;
-}
 
-.is-touch .pricing__card {
-  transition: none !important;
-}
 
 /* ============================================
    LIGHTBOX
@@ -1967,9 +1950,10 @@ a {
 
 /* Плавное увеличение центральной карточки при скролле */
 .pricing__card {
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
   transform: scale(0.92);
   opacity: 0.7;
+  will-change: transform, opacity;
 }
 
 .pricing__card.pricing-card--active {

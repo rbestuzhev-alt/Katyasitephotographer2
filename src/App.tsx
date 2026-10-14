@@ -44,29 +44,41 @@ export default function App() {
     const getCards = () => Array.from(container.querySelectorAll('.pricing__card')) as HTMLElement[];
 
     // Активная (центральная) карточка
+    // Активная (центральная) карточка с оптимизацией через requestAnimationFrame
+    let ticking = false;
     const handleScroll = () => {
-      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      if (isTouch) return; // На тач-устройствах не добавляем класс active
-      
-      const center = container.scrollLeft + container.offsetWidth / 2;
-      let closest: HTMLElement | null = null;
-      let min = Infinity;
-      getCards().forEach((card) => {
-        const d = Math.abs(center - (card.offsetLeft + card.offsetWidth / 2));
-        if (d < min) { min = d; closest = card; }
-        card.classList.remove('pricing-card--active');
-      });
-      if (closest) (closest as HTMLElement).classList.add('pricing-card--active');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const center = container.scrollLeft + container.offsetWidth / 2;
+          let closest: HTMLElement | null = null;
+          let min = Infinity;
+          
+          getCards().forEach((card) => {
+            const d = Math.abs(center - (card.offsetLeft + card.offsetWidth / 2));
+            if (d < min) { 
+              min = d; 
+              closest = card as HTMLElement; 
+            }
+            card.classList.remove('pricing-card--active');
+          });
+          
+          if (closest) {
+            (closest as HTMLElement).classList.add('pricing-card--active');
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+    
     container.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    handleScroll(); // Инициализация при загрузке
 
-    // Клик по боковой карточке (мышь, <=740px) — прокрутка к ней
+    // Клик по боковой карточке — прокрутка к ней
     const handleClick = (e: MouseEvent) => {
-      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-      if (isTouch || window.innerWidth > 740) return;
       const card = (e.target as HTMLElement).closest('.pricing__card') as HTMLElement | null;
       if (!card || !container.contains(card)) return;
+      
       container.scrollTo({
         left: card.offsetLeft - (container.offsetWidth - card.offsetWidth) / 2,
         behavior: 'smooth',
