@@ -1446,7 +1446,7 @@ a {
 
 .marquee__track {
   display: inline-flex;
-  animation: marqueeScroll 30s ease-in-out infinite alternate;
+  animation: marqueeScroll 41.25s ease-in-out infinite alternate;
 }
 
 .marquee__text {
