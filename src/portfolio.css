@@ -2286,6 +2286,7 @@ a {
 /* Ограничение позиционирования телефона на очень широких экранах */
 @media (min-width: 2171px) {
   .insta-shot {
-    right: calc(50vw - 800px) !important;
+    right: auto !important;
+    left: calc(50vw + 750px) !important; /* Фиксированная позиция от левого края */
   }
 }
