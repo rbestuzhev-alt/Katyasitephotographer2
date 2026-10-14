@@ -44,27 +44,43 @@ export default function App() {
     const getCards = () => Array.from(container.querySelectorAll('.pricing__card')) as HTMLElement[];
 
     // Активная (центральная) карточка
-    // Активная (центральная) карточка с оптимизацией через requestAnimationFrame
     let ticking = false;
+    let lastActiveCard: HTMLElement | null = null;
+    const ACTIVE_THRESHOLD = 50; // Порог в пикселях для смены активной карточки
+    
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const center = container.scrollLeft + container.offsetWidth / 2;
-          let closest: HTMLElement | null = null;
+          const cards = getCards();
+          let closestIdx = 0;
           let min = Infinity;
           
-          getCards().forEach((card) => {
+          cards.forEach((card, idx) => {
             const d = Math.abs(center - (card.offsetLeft + card.offsetWidth / 2));
             if (d < min) { 
               min = d; 
-              closest = card as HTMLElement; 
+              closestIdx = idx;
             }
-            card.classList.remove('pricing-card--active');
           });
           
-          if (closest) {
-            (closest as HTMLElement).classList.add('pricing-card--active');
+          const closest = cards[closestIdx];
+          
+          // Меняем активную карточку только если она значительно ближе к центру
+          if (closest && closest !== lastActiveCard) {
+            const lastCenter = lastActiveCard 
+              ? Math.abs(center - (lastActiveCard.offsetLeft + lastActiveCard.offsetWidth / 2))
+              : Infinity;
+            const newCenter = Math.abs(center - (closest.offsetLeft + closest.offsetWidth / 2));
+            
+            // Переключаем только если новая карточка значительно ближе (на ACTIVE_THRESHOLD пикселей)
+            if (lastCenter - newCenter > ACTIVE_THRESHOLD || !lastActiveCard) {
+              cards.forEach(card => card.classList.remove('pricing-card--active'));
+              closest.classList.add('pricing-card--active');
+              lastActiveCard = closest;
+            }
           }
+          
           ticking = false;
         });
         ticking = true;

@@ -1965,7 +1965,7 @@ a {
   opacity: 0.5;
   filter: brightness(0.7);
   transform: scale(0.92);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity, filter; /* Аппаратное ускорение для мобильных */
 }
 
@@ -1975,7 +1975,7 @@ a {
   filter: brightness(1) !important;
   transform: scale(1.05) !important;
   z-index: 10 !important;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Для тач-устройств убеждаемся, что hover не ломает логику */
