@@ -2286,15 +2286,6 @@ a {
 /* Ограничение позиционирования телефона на очень широких экранах */
 @media (min-width: 2171px) {
   .insta-shot {
-    position: relative !important;
-    right: auto !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    max-width: 1200px !important; /* Ограничение ширины контейнера телефона */
-  }
-  
-  .insta-shot img {
-    max-width: 400px !important; /* Ограничение размера телефона */
-    height: auto !important;
+    right: calc(50% - 600px) !important; /* Ограничиваем максимальное смещение вправо */
   }
 }
