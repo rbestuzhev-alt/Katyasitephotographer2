@@ -1016,6 +1016,9 @@ a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 32px;
+  overflow: visible !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 .pricing__card {
