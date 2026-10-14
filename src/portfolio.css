@@ -1949,16 +1949,29 @@ a {
 }
 
 /* Плавное увеличение центральной карточки при скролле */
+/* Базовое состояние карточки (боковые карточки затемнены и чуть меньше) */
 .pricing__card {
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+  opacity: 0.5;
+  filter: brightness(0.7);
   transform: scale(0.92);
-  opacity: 0.7;
-  will-change: transform, opacity;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity, filter; /* Аппаратное ускорение для мобильных */
 }
 
-.pricing__card.pricing-card--active {
-  transform: scale(1);
-  opacity: 1;
+/* Активная (центральная) карточка: увеличена и ПОЛНОСТЬЮ яркая */
+.pricing-card--active {
+  opacity: 1 !important;
+  filter: brightness(1) !important;
+  transform: scale(1.05) !important;
+  z-index: 10 !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Для тач-устройств убеждаемся, что hover не ломает логику */
+@media (hover: none) and (pointer: coarse) {
+  .pricing__card {
+    transition: all 0.3s ease-out;
+  }
 }
 
 @media (min-width: 741px) {
