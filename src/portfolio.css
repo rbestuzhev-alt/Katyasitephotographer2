@@ -1806,6 +1806,31 @@ a {
 }
 
 /* ============================================
+   ОТКЛЮЧАЕМ HOVER НА ТАЧ-УСТРОЙСТВАХ
+   ============================================ */
+.is-touch .portfolio__card:hover,
+.is-touch .portfolio__card-img:hover,
+.is-touch .portfolio__card-link:hover {
+  transform: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+.is-touch .portfolio__card:hover::after {
+  opacity: 0 !important;
+}
+
+.is-touch .portfolio__card:hover .portfolio__card-img {
+  transform: none !important;
+  filter: none !important;
+}
+
+.is-touch .portfolio__card:hover .portfolio__card-link {
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+}
+
+/* ============================================
    LIGHTBOX
    ============================================ */
 #portfolio-lightbox {
