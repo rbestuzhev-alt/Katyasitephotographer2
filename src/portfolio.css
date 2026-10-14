@@ -2255,3 +2255,19 @@ a {
     margin-top: 20px;
   }
 }
+
+@media (min-width: 741px) {
+  .pricing__card {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .pricing-card--active {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
