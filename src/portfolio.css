@@ -1836,7 +1836,13 @@ a {
 .is-touch .pricing-card--active {
   transform: none !important;
   scale: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  box-shadow: none !important;
   z-index: 1 !important;
+  transition: none !important;
 }
 
 .is-touch .pricing__card {

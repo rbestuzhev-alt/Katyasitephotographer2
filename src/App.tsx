@@ -45,6 +45,9 @@ export default function App() {
 
     // Активная (центральная) карточка
     const handleScroll = () => {
+      const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+      if (isTouch) return; // На тач-устройствах не добавляем класс active
+      
       const center = container.scrollLeft + container.offsetWidth / 2;
       let closest: HTMLElement | null = null;
       let min = Infinity;
