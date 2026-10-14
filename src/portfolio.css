@@ -2271,3 +2271,14 @@ a {
     transition: none !important;
   }
 }
+
+/* Более плавная анимация карточек на тач-устройствах */
+@media (hover: none) and (pointer: coarse) {
+  .pricing__card {
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  
+  .pricing-card--active {
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+}
