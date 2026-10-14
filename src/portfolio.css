@@ -1831,6 +1831,19 @@ a {
 }
 
 /* ============================================
+   ОТКЛЮЧАЕМ АНИМАЦИЮ УВЕЛИЧЕНИЯ КАРТОЧЕК НА ТАЧ-УСТРОЙСТВАХ
+   ============================================ */
+.is-touch .pricing-card--active {
+  transform: none !important;
+  scale: 1 !important;
+  z-index: 1 !important;
+}
+
+.is-touch .pricing__card {
+  transition: none !important;
+}
+
+/* ============================================
    LIGHTBOX
    ============================================ */
 #portfolio-lightbox {
